@@ -1,0 +1,96 @@
+.question-card {
+  background-color: #121212; /* deep black */
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #eaeaea;
+}
+
+/* Row 1 */
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.question-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.question-points {
+  font-size: 14px;
+  font-weight: bold;
+  color: #facc15; /* yellow accent */
+}
+
+/* Row 2 */
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* MCQ options */
+.option {
+  padding: 12px;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #1e1e1e;
+  color: #d1d1d1;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background-color: #2a2a2a;
+  border-color: #4a4a4a;
+}
+
+/* selected option */
+.option.selected {
+  background-color: #2563eb; /* blue */
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+/* correct answer (future use) */
+.option.correct {
+  background-color: #16a34a; /* green */
+  border-color: #16a34a;
+  color: #ffffff;
+}
+
+/* wrong answer (optional extension) */
+.option.wrong {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* descriptive answer input */
+.answer-input {
+  min-height: 90px;
+  padding: 12px;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: #eaeaea;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.answer-input::placeholder {
+  color: #888;
+}
+
+.answer-input:focus {
+  border-color: #2563eb; /* blue focus */
+  box-shadow: 0 0 0 1px #2563eb;
+}

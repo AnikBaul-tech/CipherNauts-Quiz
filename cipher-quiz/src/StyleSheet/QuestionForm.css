@@ -1,0 +1,64 @@
+.form-card {
+  background: #121212;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #eaeaea;
+}
+
+.input.small {
+  width: 48%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.options-container {
+  margin-top: 10px;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.option-row button {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+}
+
+.btn {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn.primary {
+  background: #ca591c;
+  border-color: #f16d15;
+}
+
+.radio {
+  accent-color: green;
+}
