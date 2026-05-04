@@ -18,3 +18,14 @@
   border-radius: 2px;
 }
 
+.qs-form-container{
+  height : 60%;
+  width : 80%;
+  scroll-behavior: smooth;
+}
+
+.main-container{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
