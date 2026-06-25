@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import "../../StyleSheet/Questions.css"
 
-const QuestionCard = ({ question, points = 1, options, type, onSelect }) => {
+const QuestionCard = ({ questionId, question, points = 1, options, type, onSelect }) => {
   const [selected, setSelected] = useState(null);
   const [writtenAnswer, setWrittenAnswer] = useState("");
 
   const handleSelect = (option) => {
     setSelected(option);
-    if (onSelect) onSelect(option);
+    if (onSelect) onSelect(questionId,option);
   };
 
   const handleWrite = (e) => {
     setWrittenAnswer(e.target.value);
-    if (onSelect) onSelect(e.target.value);
+    if (onSelect) onSelect(questionId,e.target.value);
   };
 
   return (

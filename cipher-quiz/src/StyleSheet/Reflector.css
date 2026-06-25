@@ -4,7 +4,6 @@
   border-radius: 12px;
   padding: 16px;
   color: #fff;
-  width: 250px;
 }
 
 /* timer */
@@ -38,6 +37,8 @@
 
 /* attempted */
 .q-box.attempted {
+    width: 40px;
+    border-radius: 50%;
   background: #2563eb; /* blue */
   border-color: #2563eb;
   color: #fff;
