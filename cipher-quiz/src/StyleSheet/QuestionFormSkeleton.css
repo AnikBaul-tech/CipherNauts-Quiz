@@ -1,0 +1,100 @@
+.question-form-skeleton {
+
+    background: #171717;
+
+    border: 1px solid #2c2c2c;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+}
+
+.sk {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #2c2c2c;
+
+    border-radius: 8px;
+
+    margin-bottom: 16px;
+
+}
+
+.sk::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    transform: translateX(-100%);
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, .18),
+            transparent);
+
+    animation: shimmer 1.3s infinite;
+
+}
+
+@keyframes shimmer {
+
+    100% {
+
+        transform: translateX(100%);
+
+    }
+
+}
+
+.sk-title {
+
+    width: 45%;
+
+    height: 28px;
+
+}
+
+.sk-input {
+
+    height: 45px;
+
+}
+
+.sk-row {
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+.sk-small {
+
+    flex: 1;
+
+    height: 45px;
+
+}
+
+.sk-option {
+
+    height: 45px;
+
+}
+
+.sk-btn {
+
+    margin-top: 25px;
+
+    width: 180px;
+
+    height: 48px;
+
+}

@@ -21,7 +21,63 @@ body {
 /* header */
 
 .home-header {
-  margin-bottom: 40px;
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 35px;
+}
+
+.logout-btn{
+
+  background:#dc2626;
+
+  color:#fff;
+
+  border:1px solid #ef4444;
+
+  border-radius:10px;
+
+  padding:12px 24px;
+
+  font-size:15px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:all .25s ease;
+
+  box-shadow:0 4px 15px rgba(220,38,38,.25);
+
+}
+
+.logout-btn:hover{
+
+  background:#b91c1c;
+
+  border-color:#f87171;
+
+  transform:translateY(-2px);
+
+  box-shadow:0 8px 20px rgba(220,38,38,.35);
+
+}
+
+.logout-btn:active{
+
+  transform:scale(.97);
+
+}
+
+.logout-btn:focus{
+
+  outline:none;
+
+  box-shadow:0 0 0 3px rgba(239,68,68,.25);
+
 }
 
 /* heading */
@@ -91,7 +147,7 @@ body {
   gap: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .create-card:hover {
@@ -210,4 +266,159 @@ body {
   justify-content: space-between;
   color: #d1d5db;
   font-size: 14px;
+}
+
+.published-quizzes {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 25px;
+
+  margin-top: 40px;
+}
+
+.quiz-card {
+
+  background: #171717;
+
+  border: 1px solid #303030;
+
+  border-radius: 15px;
+
+  padding: 22px;
+
+  transition: .25s;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+
+}
+
+.quiz-card:hover {
+
+  transform: translateY(-5px);
+
+  border-color: #3b82f6;
+
+}
+
+.quiz-card h2 {
+
+  color: white;
+
+  margin-bottom: 12px;
+
+}
+
+.quiz-card p {
+
+  color: #b5b5b5;
+
+  min-height: 50px;
+
+}
+
+.quiz-info {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin: 12px 0;
+
+  color: #facc15;
+
+  font-size: 14px;
+
+}
+
+.quiz-card button {
+
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+.delete-btn {
+
+  background: #dc2626;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: .2s;
+
+}
+
+.delete-btn:hover {
+
+  background: #b91c1c;
+
+}
+
+.modal-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, .6);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+
+}
+
+.delete-modal {
+
+  width: 420px;
+
+  background: #151515;
+
+  border: 1px solid #303030;
+
+  border-radius: 15px;
+
+  padding: 30px;
+
+  color: white;
+
+}
+
+.modal-buttons {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 15px;
+
+  margin-top: 25px;
+
 }

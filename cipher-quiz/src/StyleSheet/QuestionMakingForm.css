@@ -1,0 +1,146 @@
+/* Outer Container */
+
+.quiz-form-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+/* Card */
+
+.quiz-form {
+    width: 100%;
+    max-width: 700px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 35px;
+
+    background: #121212;
+
+    border: 1px solid #2a2a2a;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+
+/* Heading */
+
+.quiz-form h2 {
+    color: white;
+    margin: 0 0 10px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.quiz-form h2::after{
+    content:"";
+    display:block;
+    margin-top:8px;
+    width:70px;
+    height:3px;
+    background:linear-gradient(90deg,#2563eb,#facc15);
+    border-radius:2px;
+}
+
+/* Inputs */
+
+.quiz-form input,
+.quiz-form textarea{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    background:#1b1b1b;
+
+    border:1px solid #303030;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+/* Placeholder */
+
+.quiz-form input::placeholder,
+.quiz-form textarea::placeholder{
+
+    color:#888;
+}
+
+/* Focus */
+
+.quiz-form input:focus,
+.quiz-form textarea:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* Description */
+
+.quiz-form textarea{
+
+    resize:vertical;
+
+    min-height:120px;
+
+    font-family:inherit;
+}
+
+/* Date Picker */
+
+.quiz-form input[type="datetime-local"]{
+
+    color:#ddd;
+}
+
+/* Submit Button */
+
+.quiz-form button{
+
+    margin-top:10px;
+
+    padding:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.quiz-form button:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(37,99,235,.3);
+}
+
+.quiz-form button:active{
+
+    transform:scale(.98);
+}
