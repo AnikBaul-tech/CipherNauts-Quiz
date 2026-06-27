@@ -1,19 +1,29 @@
-import React from "react";
-import { auth, googleProvider } from "../config/Firebase.js";
-import { signInWithPopup, signOut } from "firebase/auth";
+import React ,{useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import "../StyleSheet/AuthPage.css";
+import { useAuth } from "../context/AuthProvider.jsx";
 
 const AuthPage = () => {
-    const navigate = useNavigate() ;
+  const navigate = useNavigate();
+  const { login,user,loading } = useAuth();
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      navigate("/home");
+      await login();
+
+
     } catch (err) {
       console.error(err);
     }
   };
+  useEffect(() => {
+
+    if (!loading && user) {
+
+      navigate("/home", { replace: true });
+
+    }
+
+  }, [user, loading, navigate]);
   return (
     <div className="auth-page">
       <div className="auth-card">
