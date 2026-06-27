@@ -1,35 +1,126 @@
-import React, { use } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../StyleSheet/HomePage.css";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  getDocs,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
+import { db } from "../config/Firebase";
+import { useAuth } from "../context/AuthProvider";
+import QuizCard from "../components/User/QuizCard";
+import  QuizCardSkeleton  from "../components/Skeleton/QuizCardSkeletonHome.jsx"
 
 const Home = () => {
-  const previousQuizzes = [
-    {
-      id: 1,
-      title: "Java Basics Quiz",
-      author: "Anik",
-      marks: 50,
-      status: "Created",
-    },
-    {
-      id: 2,
-      title: "React Fundamentals",
-      author: "Admin",
-      marks: 40,
-      status: "Attempted",
-    },
-    {
-      id: 3,
-      title: "Physics Mock Test",
-      author: "Teacher",
-      marks: 100,
-      status: "Attempted",
-    },
-  ];
+  const [quizzes, setQuizzes] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [loadingQuizzes, setLoadingQuizzes] = useState(true);
+  const { user, loading, logout } = useAuth();
+
+  if (loading) {
+
+    return <div>Loading...</div>;
+
+  }
+
+  useEffect(() => {
+
+    const q = query(
+
+      collection(db, "quizzes"),
+
+      where("status", "==", "published"),
+      where("authorId", "==", user?.uid)
+
+    );
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+
+      const data = snapshot.docs.map(doc => ({
+
+        id: doc.id,
+
+        ...doc.data()
+
+      }));
+
+      setQuizzes(data);
+
+      setLoadingQuizzes(false);
+
+
+    });
+
+    return () => unsubscribe();
+
+  }, []);
   const navigate = useNavigate();
 
-  const createQuiz =() => {
+  const signOutWithGoogle = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const createQuiz = () => {
     navigate("/quiz-making-form")
+  }
+  const deleteQuiz = async () => {
+
+    if (!selectedQuiz) return;
+
+    try {
+
+      const snapshot = await getDocs(
+
+        collection(
+          db,
+          "quizzes",
+          selectedQuiz.id,
+          "questions"
+        )
+
+      );
+
+      for (const question of snapshot.docs) {
+
+        await deleteDoc(question.ref);
+
+      }
+
+      await deleteDoc(
+
+        doc(
+          db,
+          "quizzes",
+          selectedQuiz.id
+        )
+
+      );
+
+      setShowDeleteModal(false);
+
+      setSelectedQuiz(null);
+
+    }
+    catch (err) {
+
+      console.log(err);
+
+      alert("Unable to delete quiz");
+
+    }
+
   }
 
   return (
@@ -50,6 +141,13 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        <button
+          className="logout-btn"
+          onClick={signOutWithGoogle}
+        >
+          Logout
+        </button>
       </div>
 
       {/* Create Quiz Section */}
@@ -65,31 +163,112 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="previous">
-        <div className="section-title">Previous Activity</div>
+      <div className="published-quizzes">
 
-        <div className="quiz-list">
-          {previousQuizzes.map((quiz) => (
-            <div className="quiz-card" key={quiz.id}>
-              <div className="quiz-top">
-                <div>
-                  <div className="quiz-title">{quiz.title}</div>
+        {
+          loadingQuizzes ?
 
-                  <div className="quiz-author">by {quiz.author}</div>
-                </div>
+            Array.from({ length: 6 }).map((_, index) => (
 
-                <div className={`quiz-status ${quiz.status.toLowerCase()}`}>
-                  {quiz.status}
-                </div>
-              </div>
+              <QuizCardSkeleton key={index} />
 
-              <div className="quiz-bottom">
-                <div className="quiz-marks">{quiz.marks} Marks</div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))
+
+            :
+
+            quizzes.length === 0 ?
+
+              <h3>No Published Quiz Yet</h3>
+
+              :
+
+              quizzes.map((quiz) => (
+
+                <QuizCard
+                  key={quiz.id}
+                  quiz={quiz}
+                  onDelete={(quiz) => {
+
+                    setSelectedQuiz(quiz);
+
+                    setShowDeleteModal(true);
+
+                  }}
+                />
+
+              ))
+        }
+
       </div>
+      {
+        showDeleteModal && (
+
+          <div className="modal-overlay">
+
+            <div className="delete-modal">
+
+              <h2>
+
+                Delete Quiz
+
+              </h2>
+
+              <p>
+
+                Are you sure you want to delete
+
+              </p>
+
+              <h3>
+
+                {selectedQuiz?.title}
+
+              </h3>
+
+              <p>
+
+                This action cannot be undone.
+
+              </p>
+
+              <div className="modal-buttons">
+
+                <button
+
+                  onClick={() => {
+
+                    setShowDeleteModal(false);
+
+                    setSelectedQuiz(null);
+
+                  }}
+
+                >
+
+                  Cancel
+
+                </button>
+
+                <button
+
+                  className="delete-btn"
+
+                  onClick={deleteQuiz}
+
+                >
+
+                  Delete
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        )
+      }
     </div>
   );
 };
