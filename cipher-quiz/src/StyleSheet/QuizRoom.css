@@ -1,0 +1,62 @@
+.quiz-room-nav {
+  display: flex;
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.quiz-room-nav button {
+  padding: 12px 25px;
+
+  border: none;
+
+  background: #181818;
+
+  color: white;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.quiz-room-nav button.active {
+  background: #2563eb;
+}
+
+.participants-page,
+.settings-page {
+  background: #171717;
+
+  padding: 25px;
+
+  border-radius: 15px;
+}
+
+.participant-card {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px;
+
+  border-bottom: 1px solid #2d2d2d;
+}
+
+.participant-card button {
+  margin-left: 10px;
+}
+
+.setting-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid #2d2d2d;
+}

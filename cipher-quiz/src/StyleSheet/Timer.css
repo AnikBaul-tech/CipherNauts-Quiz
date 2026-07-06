@@ -1,0 +1,47 @@
+.timer {
+  width: fit-content;
+
+  margin: 20px auto;
+
+  padding: 12px 24px;
+
+  background: #1d1d1d;
+
+  color: #00ff90;
+
+  border: 2px solid #00ff90;
+
+  border-radius: 12px;
+
+  font-size: 2.2rem;
+
+  font-weight: bold;
+
+  letter-spacing: 4px;
+
+  font-family: "Courier New", monospace;
+
+  transition: 0.3s ease;
+}
+
+.warning {
+  color: #ff4444;
+
+  border-color: #ff4444;
+
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,151 @@
+.profile-page {
+  min-height: 100vh;
+
+  background: #121212;
+
+  color: white;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 40px;
+
+  padding: 40px;
+}
+
+.left-panel {
+  padding-right: 40px;
+
+  border-right: 2px solid white;
+}
+
+.middle-panel {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-right: 2px solid white;
+}
+
+.right-panel {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 40px;
+}
+
+.top-user {
+  display: flex;
+
+  gap: 30px;
+
+  align-items: center;
+}
+
+.profile-image {
+  width: 120px;
+
+  height: 120px;
+
+  border-radius: 50%;
+
+  border: 3px solid white;
+
+  object-fit: cover;
+}
+
+.top-user h2 {
+  border: 2px solid white;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  min-width: 220px;
+
+  width: max-content;
+
+  text-align: center;
+}
+
+.top-user p {
+  margin-top: 15px;
+
+  border: 2px solid white;
+
+  padding: 10px;
+
+  min-width: 180px;
+
+  width: max-content;
+
+  border-radius: 8px;
+}
+
+.stats-box {
+  margin-top: 60px;
+
+  border: 2px solid white;
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  line-height: 2.2;
+
+  font-size: 18px;
+}
+
+.highest-card {
+  width: 260px;
+
+  height: 180px;
+
+  border: 2px solid white;
+
+  border-radius: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.highest-card h1 {
+  margin-top: 20px;
+
+  font-size: 42px;
+
+  color: #4cafef;
+}
+
+.badge {
+  border: 2px solid white;
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  text-align: center;
+}
+
+.badge h2 {
+  margin-bottom: 15px;
+}
+
+.badge p {
+  font-size: 28px;
+
+  color: #ffd54f;
+
+  margin-bottom: 10px;
+}

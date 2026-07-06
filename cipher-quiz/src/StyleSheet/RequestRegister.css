@@ -1,0 +1,201 @@
+.request-register-page {
+  max-width: 900px;
+
+  margin: 40px auto;
+
+  padding: 20px;
+}
+
+.request-register-page .main-heading {
+  margin-bottom: 35px;
+
+  text-align: center;
+}
+
+.search-box {
+  display: flex;
+
+  gap: 15px;
+
+  margin-bottom: 35px;
+}
+
+.search-box input {
+  flex: 1;
+
+  background: #1b1b1b;
+
+  color: #ffffff;
+
+  border: 1px solid #3a3a3a;
+
+  border-radius: 10px;
+
+  padding: 14px 18px;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: 0.25s;
+}
+
+.search-box input:focus {
+  border-color: #3b82f6;
+
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+}
+
+.search-box button {
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 10px;
+
+  padding: 0 28px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.search-box button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+}
+
+.quiz-card {
+  background: #171717;
+
+  border: 1px solid #2d2d2d;
+
+  border-radius: 16px;
+
+  padding: 28px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  animation: fadeUp 0.35s ease;
+}
+
+.quiz-card h2 {
+  color: white;
+
+  margin-bottom: 12px;
+
+  font-size: 28px;
+}
+
+.quiz-card p {
+  color: #cfcfcf;
+
+  line-height: 1.6;
+
+  margin-bottom: 22px;
+}
+
+.quiz-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #2d2d2d;
+
+  color: #d7d7d7;
+
+  font-size: 15px;
+}
+
+.quiz-info:last-of-type {
+  margin-bottom: 25px;
+}
+
+.quiz-info span:first-child {
+  font-weight: 500;
+}
+
+.quiz-card button {
+  width: 100%;
+
+  padding: 15px;
+
+  margin-top: 25px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.quiz-card button:not(:disabled) {
+  background: #2563eb;
+
+  color: white;
+}
+
+.quiz-card button:not(:disabled):hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+}
+
+.quiz-card button:disabled {
+  background: #2b2b2b;
+
+  color: #8e8e8e;
+
+  cursor: not-allowed;
+}
+
+.request-register-page h3 {
+  text-align: center;
+
+  color: #facc15;
+
+  margin-bottom: 20px;
+}
+
+.status-requested {
+  color: #facc15;
+}
+
+.status-registered {
+  color: #22c55e;
+}
+
+.status-attempted {
+  color: #3b82f6;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}

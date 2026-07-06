@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -30,54 +30,46 @@ body {
   margin-bottom: 35px;
 }
 
-.logout-btn{
+.logout-btn {
+  background: #dc2626;
 
-  background:#dc2626;
+  color: #fff;
 
-  color:#fff;
+  border: 1px solid #ef4444;
 
-  border:1px solid #ef4444;
+  border-radius: 10px;
 
-  border-radius:10px;
+  padding: 12px 24px;
 
-  padding:12px 24px;
+  font-size: 15px;
 
-  font-size:15px;
+  font-weight: 600;
 
-  font-weight:600;
+  cursor: pointer;
 
-  cursor:pointer;
+  transition: all 0.25s ease;
 
-  transition:all .25s ease;
-
-  box-shadow:0 4px 15px rgba(220,38,38,.25);
-
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25);
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
+  background: #b91c1c;
 
-  background:#b91c1c;
+  border-color: #f87171;
 
-  border-color:#f87171;
+  transform: translateY(-2px);
 
-  transform:translateY(-2px);
-
-  box-shadow:0 8px 20px rgba(220,38,38,.35);
-
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
 }
 
-.logout-btn:active{
-
-  transform:scale(.97);
-
+.logout-btn:active {
+  transform: scale(0.97);
 }
 
-.logout-btn:focus{
+.logout-btn:focus {
+  outline: none;
 
-  outline:none;
-
-  box-shadow:0 0 0 3px rgba(239,68,68,.25);
-
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
 }
 
 /* heading */
@@ -109,7 +101,7 @@ body {
 }
 
 .subheading-content {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -269,7 +261,6 @@ body {
 }
 
 .published-quizzes {
-
   display: grid;
 
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -280,7 +271,6 @@ body {
 }
 
 .quiz-card {
-
   background: #171717;
 
   border: 1px solid #303030;
@@ -289,38 +279,30 @@ body {
 
   padding: 22px;
 
-  transition: .25s;
+  transition: 0.25s;
 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
-
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .quiz-card:hover {
-
   transform: translateY(-5px);
 
   border-color: #3b82f6;
-
 }
 
 .quiz-card h2 {
-
   color: white;
 
   margin-bottom: 12px;
-
 }
 
 .quiz-card p {
-
   color: #b5b5b5;
 
   min-height: 50px;
-
 }
 
 .quiz-info {
-
   display: flex;
 
   justify-content: space-between;
@@ -330,11 +312,9 @@ body {
   color: #facc15;
 
   font-size: 14px;
-
 }
 
 .quiz-card button {
-
   width: 100%;
 
   margin-top: 18px;
@@ -350,11 +330,9 @@ body {
   border-radius: 8px;
 
   cursor: pointer;
-
 }
 
 .delete-btn {
-
   background: #dc2626;
 
   color: white;
@@ -367,23 +345,33 @@ body {
 
   cursor: pointer;
 
-  transition: .2s;
-
+  transition: 0.2s;
 }
 
 .delete-btn:hover {
-
   background: #b91c1c;
+}
 
+.profile-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profile-btn:hover {
+  background: #1d4ed8;
 }
 
 .modal-overlay {
-
   position: fixed;
 
   inset: 0;
 
-  background: rgba(0, 0, 0, .6);
+  background: rgba(0, 0, 0, 0.6);
 
   display: flex;
 
@@ -392,11 +380,9 @@ body {
   align-items: center;
 
   z-index: 1000;
-
 }
 
 .delete-modal {
-
   width: 420px;
 
   background: #151515;
@@ -408,11 +394,9 @@ body {
   padding: 30px;
 
   color: white;
-
 }
 
 .modal-buttons {
-
   display: flex;
 
   justify-content: flex-end;
@@ -420,5 +404,56 @@ body {
   gap: 15px;
 
   margin-top: 25px;
+}
 
+/* Option Selctors */
+
+.option-selector {
+  display: flex;
+
+  gap: 15px;
+
+  margin: 40px 0 30px;
+}
+
+.option {
+  padding: 12px 24px;
+
+  border: 1px solid #2d2d2d;
+
+  border-radius: 8px;
+
+  background: #181818;
+
+  color: #bdbdbd;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.option:hover {
+  border-color: #3b82f6;
+
+  color: white;
+}
+
+.option.active {
+  background: #2563eb;
+
+  border-color: #2563eb;
+
+  color: white;
+}
+
+.status {
+  size: 15px;
+}
+
+#published {
+  color: rgb(18, 166, 18);
+}
+
+#draft {
+  color: #facc15;
 }
