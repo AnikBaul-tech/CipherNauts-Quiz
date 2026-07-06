@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "../../StyleSheet/QuestionForm.css";
 import {
   addDoc,
@@ -18,7 +17,7 @@ import AddedQuestions from "./AddedQuestions";
 import QuestionFormSkeleton from "../Skeleton/QuestionFormSkeleton";
 import AddedQuestionsSkeleton from "../Skeleton/AddedQuestionSkeleton";
 
-const QuestionForm = () => {
+const QuestionForm = ({quizId}) => {
   const [quiz, setQuiz] = useState(null); // to fetch the quiz details
   const [questions, setQuestions] = useState([]); // to store the questions which are already added
   const [question, setQuestion] = useState(""); // to store the question which is currently being added
@@ -30,8 +29,10 @@ const QuestionForm = () => {
 
   const [quizLoading, setQuizLoading] = useState(true);
   const [questionsLoading, setQuestionsLoading] = useState(true);
-  const { quizId } = useParams();
   const navigate = useNavigate();
+
+  console.log(quizId)
+  console.log(typeof quizId)
 
   // for the questions which are already added to show in the top
   useEffect(() => {
@@ -157,6 +158,7 @@ const QuestionForm = () => {
 
     try {
 
+
       await deleteDoc(
 
         doc(
@@ -193,6 +195,11 @@ const QuestionForm = () => {
 
   const handleSubmit = async () => {
 
+    if (options.length <= 1) {
+      alert("Minimum two Options needed");
+      return;
+    }
+
     if (type === "mcq" && correctIndex === null) {
       alert("Select a Option as a correct answer")
     }
@@ -219,6 +226,20 @@ const QuestionForm = () => {
     }
 
   };
+
+  const handleDraft = async () => {
+    try {
+      
+      alert("Saved as Draft");
+
+      navigate("/home");
+
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save Draft.");
+    }
+  };
+
   const finishQuiz = async () => {
     try {
       const quizRef = doc(db, "quizzes", quizId);
@@ -246,6 +267,14 @@ const QuestionForm = () => {
         status: "published",
       });
 
+      await navigator.clipboard.writeText(quizId);
+
+      alert(`Quiz Published!
+
+        Quiz ID copied to clipboard:
+        
+        ${quizId}`);
+
       navigate("/home");
 
     } catch (err) {
@@ -253,6 +282,7 @@ const QuestionForm = () => {
       alert("Failed to finish quiz.");
     }
   };
+  
 
   const isEditable = quiz?.status === "draft";
 
@@ -274,7 +304,7 @@ const QuestionForm = () => {
 
   return (
     <>
-      <AddedQuestions questions={questions} onDelete={deleteQuestion} />
+      <AddedQuestions questions={questions} onDelete={deleteQuestion} isEditable={isEditable} />
       {isEditable && <div className="form-card">
         <input
           className="input"
@@ -343,6 +373,10 @@ const QuestionForm = () => {
         </div>
         <button className="btn primary" onClick={handleSubmit}>
           Save Question
+        </button>
+
+        <button className="btn primary" onClick={handleDraft}>
+          Save as draft
         </button>
 
         <button className="btn primary" onClick={finishQuiz}>
