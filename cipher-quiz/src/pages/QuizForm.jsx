@@ -1,69 +1,76 @@
-import React, { useState } from "react";
+import React from "react";
 import QuestionCard from "../components/User/QuestionCard";
-import Subheading from "../components/User/Subheading";
-import "../APP.css";
-import Reflector from "../components/User/Reflector";
+import "../StyleSheet/QuizForm.css";
 
-const QuizForm = () => {
-  const [answers,setAnswers] = useState({});
-
-  const handleAnswers = (questionId,ans) => {
+const QuizForm = ({
+  questions,
+  setAttempted,
+  onSubmit,
+  answers,
+  setAnswers,
+  disabled,
+  submitted
+}) => {
+  const handleAnswer = (index, questionId, answer) => {
     setAnswers((prev) => ({
       ...prev,
-      [questionId] : ans
-    }))
-  }
+
+      [questionId]: answer,
+    }));
+
+    setAttempted((prev) => {
+      const updated = [...prev];
+
+      updated[index] = true;
+
+      return updated;
+    });
+  };
+  console.log("QuizForm answers:", answers);
 
   const handleSubmit = () => {
-    console.log(answers)
-  }
-  
-  const questionSet = [
-    {
-      id: 1,
-      question: "1+1",
-      type: "mcq",
-      options: [1, 2, 3, 4],
-    },
-    {
-      id: 2,
-      question: "1+2",
-      type: "mcq",
-      options: [1, 2, 3, 4],
-    },
-    {
-      id: 3,
-      question: "1+2",
-      type: "text",
-    },
-  ];
+    onSubmit();
+  };
+
   return (
     <>
-      <h1 className="main-heading">Cipher Quiz</h1>
-      <Subheading desc="Basic Quiz" author="HA" tmarks="50" ttime="60 mins" />
+      {disabled && <div className="quiz-form-container">Quiz Ended</div>}
 
-      <div className="main-container">
-        <div className="qs-form-container">
-          {questionSet.map((qs) => (
+      {!disabled && (
+        <div className="quiz-form-container">
+          {questions.map((qs, index) => (
             <QuestionCard
               key={qs.id}
-              questionId = {qs.id}
+              index={index}
+              questionId={qs.id}
               type={qs.type}
               question={qs.question}
               options={qs.options}
-              onSelect={(questionid,ans) => handleAnswers(questionid,ans)}
+              answer={answers[qs.id]}
+              disabled={disabled || submitted}
+              onSelect={(answer) =>
+                handleAnswer(
+                  index,
+
+                  qs.id,
+
+                  answer
+                )
+              }
             />
           ))}
+
+          <div className="submit-container">
+            <button
+              className="submit-btn"
+              onClick={handleSubmit}
+              disabled={disabled || submitted}
+            >
+              Submit Quiz
+            </button>
+          </div>
         </div>
-        <div className="side-show">
-          <Reflector
-            totalQs={40}
-            attempted={[true,true,false,false,false,false,false,true,true,true,true,false,true,false,true]}
-            timeLeft={150}
-          />
-        </div>
-      </div>
-      <button onClick={handleSubmit()}>Ans</button>
+      )}
     </>
   );
 };

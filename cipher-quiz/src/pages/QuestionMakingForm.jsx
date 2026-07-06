@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../StyleSheet/QuestionMakingForm.css";
-import { doc, addDoc, getDoc, collection, serverTimestamp, Timestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, Timestamp } from "firebase/firestore";
 import { db } from "../config/Firebase";
 import { useNavigate } from "react-router-dom";
 import PreviewModal from "../components/Creator/PreviewModal";
 import { auth } from "../config/Firebase";
+import Header from "../components/User/Header";
 
 
 
@@ -28,9 +29,6 @@ const QuestionMakingForm = () => {
   };
   const handleCreateQuiz = async () => {
     try {
-
-      console.log("Current User:", user);
-      console.log("UID:", user?.uid);
       const now = new Date();
 
       const start = new Date(quizData.startTime);
@@ -74,7 +72,7 @@ const QuestionMakingForm = () => {
 
       setShowPreview(false);
 
-      navigate(`/quiz-making-form/${docRef.id}`);
+      navigate(`/quiz-room/${docRef.id}`);
 
 
 
@@ -88,6 +86,7 @@ const QuestionMakingForm = () => {
   };
   return (
     <div>
+      <Header />
       <div className="quiz-form-container">
         <form className="quiz-form">
 
