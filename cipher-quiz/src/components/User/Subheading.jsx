@@ -2,10 +2,10 @@ import React from "react";
 import { useTypewriter } from "../../Hooks/useTypewriter.js";
 import "../../StyleSheet/Subheading.css";
 
-const Subheading = ({ desc, author, tmarks, ttime }) => {
-  const line1 = useTypewriter(`Description: ${desc}`);
-  const line2 = useTypewriter(` Author: ${author}`);
-  const line3 = useTypewriter(` Marks: ${tmarks} | Time: ${ttime}`);
+const Subheading = ({ quiz }) => {
+  const line1 = useTypewriter(`Title: ${quiz.title}`);
+  const line2 = useTypewriter(` Author: ${quiz.authorName}`);
+  const line3 = useTypewriter(` Topic: ${quiz.topic} | Marks: ${quiz.totalMarks}`);
   return (
     <div className="subheading-container">
       <div className="subheading-content">
