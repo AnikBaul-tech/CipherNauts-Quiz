@@ -1,56 +1,91 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
-const QuizCard = ({ quiz, onDelete }) => {
+const QuizCard = ({ quiz, view, onDelete }) => {
+  const navigate = useNavigate();
+  const {user} = useAuth();
 
-    const navigate = useNavigate();
+  const now = new Date();
 
-    return (
+  const startTime = quiz.startTime?.toDate();
+  const endTime = quiz.endTime?.toDate();
 
-        <>
+  const renderAction = () => {
+    switch (view) {
+      case "created":
+        return (
+          <>
+            <button onClick={() => navigate(`/quiz-room/${quiz.id}`)}>
+              Open Quiz Room
+            </button>
 
-            <div className="quiz-card">
+            <button className="delete-btn" onClick={() => onDelete(quiz)}>
+              Delete
+            </button>
+          </>
+        );
 
-                <h2>{quiz.title}</h2>
+      case "pending":
+        return <button disabled>Request Pending</button>;
 
-                <p>{quiz.description}</p>
+      case "registered":
+        if (startTime && now < startTime) {
+          return <button disabled>Starts Soon</button>;
+        }
 
-                <div className="quiz-info">
+        if (startTime && endTime && now >= startTime && now <= endTime) {
+          return (
+            <button onClick={() => navigate(`/attempt-quiz/${quiz.id}`)}>
+              Start Quiz
+            </button>
+          );
+        }
 
-                    <span>{quiz.topic}</span>
+        return <button disabled>Quiz Ended</button>;
 
-                    <span>{quiz.totalQuestions} Questions</span>
+      case "participated":
+        return (
+          <button onClick={() => navigate(`/result/${quiz.id}/${user.uid}`)}>
+            View Result
+          </button>
+        );
 
-                </div>
+      default:
+        return null;
+    }
+  };
 
-                <div className="quiz-info">
+  return (
+    <div className="quiz-card">
+      <h2>{quiz.title}</h2>
 
-                    <span>{quiz.totalMarks} Marks</span>
+      <p>{quiz.description}</p>
 
-                    <span>{quiz.authorName}</span>
+      {view === "created" && (
+        <span className="status">
+          {quiz.status === "draft" ? (
+            <p id="draft">Draft</p>
+          ) : (
+            <p id="published">Published</p>
+          )}
+        </span>
+      )}
 
-                </div>
+      <div className="quiz-info">
+        <span>{quiz.topic}</span>
 
-                <button onClick={() => navigate(`/quiz-making-form/${quiz.id}`)}>
+        <span>{quiz.totalQuestions} Questions</span>
+      </div>
 
-                    Open Quiz
+      <div className="quiz-info">
+        <span>{quiz.totalMarks} Marks</span>
 
-                </button>
+        <span>{quiz.authorName}</span>
+      </div>
 
-
-                <button
-                    className="delete-btn"
-                    onClick={() => onDelete(quiz)}
-                >
-
-                    Delete
-
-                </button>
-
-            </div>
-        </>
-
-    )
-
-}
+      {renderAction()}
+    </div>
+  );
+};
 
 export default QuizCard;
