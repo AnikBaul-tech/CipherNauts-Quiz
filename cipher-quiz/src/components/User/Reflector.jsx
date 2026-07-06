@@ -11,10 +11,6 @@ const Reflector = ({ totalQs, attempted = [], timeLeft }) => {
   return (
     <div className="reflector">
 
-      <div className="time">
-        {formatTime(timeLeft)}
-      </div>
-
       <div className="options">
         {Array.from({ length: totalQs }).map((_, i) => (
           <div
