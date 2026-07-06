@@ -1,11 +1,11 @@
 import React from 'react'
 import '../../StyleSheet/AddedQuestions.css'
 
-const AddedQuestions = ({ questions, onDelete }) => {
+const AddedQuestions = ({ questions, onDelete, isEditable }) => {
     return (
         <div className="previous-questions">
 
-            <h2 className='heading-primary'>Questions Added</h2>
+            <h2 className='heading-primary'>Added Questions</h2>
 
             {
 
@@ -35,7 +35,7 @@ const AddedQuestions = ({ questions, onDelete }) => {
                         </div>
                         <div className="question-actions">
 
-                            <button
+                            {isEditable && <button
 
                                 className="delete-question-btn"
 
@@ -45,7 +45,7 @@ const AddedQuestions = ({ questions, onDelete }) => {
 
                                 Delete Question
 
-                            </button>
+                            </button>}
 
                         </div>
 
