@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import "../../StyleSheet/Questions.css"
+import React from "react";
+import "../../StyleSheet/Questions.css";
 
-const QuestionCard = ({ questionId, question, points = 1, options, type, onSelect }) => {
-  const [selected, setSelected] = useState(null);
-  const [writtenAnswer, setWrittenAnswer] = useState("");
-
-  const handleSelect = (option) => {
-    setSelected(option);
-    if (onSelect) onSelect(questionId,option);
-  };
-
-  const handleWrite = (e) => {
-    setWrittenAnswer(e.target.value);
-    if (onSelect) onSelect(questionId,e.target.value);
-  };
-
+const QuestionCard = ({
+  question,
+  points = 1,
+  options,
+  answer,
+  type,
+  onSelect,
+  disabled,
+}) => {
   return (
     <div className="question-card">
       <div className="question-header">
@@ -26,22 +21,22 @@ const QuestionCard = ({ questionId, question, points = 1, options, type, onSelec
           options.map((opt, index) => (
             <div
               key={index}
-              className={`option ${selected === opt ? "selected" : ""}`}
-              onClick={() => handleSelect(opt)}
+              className={`option ${answer === opt ? "selected" : ""} ${
+                disabled ? "disabled" : ""
+              }`}
+              onClick={() => !disabled && onSelect(opt)}
             >
               {opt}
             </div>
           ))
         ) : (
           <textarea
-            className="answer-input"
-            placeholder="Write your answer here..."
-            value={writtenAnswer}
-            onChange={handleWrite}
+            value={answer || ""}
+            disabled={disabled}
+            onChange={(e) => onSelect(e.target.value)}
           />
         )}
       </div>
-
     </div>
   );
 };
