@@ -4,6 +4,7 @@ import { db } from "../config/Firebase";
 import { useAuth } from "../context/AuthProvider";
 import "../StyleSheet/RequestRegister.css";
 import Header from "../components/User/Header";
+import { toast } from "react-toastify";
 
 const RequestRegister = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const RequestRegister = () => {
 
   const handleSearch = async () => {
     if (quizId.trim() === "") {
-      alert("Enter Quiz ID");
+      toast.info("Enter Quiz ID");
       return;
     }
 
@@ -48,7 +49,7 @@ const RequestRegister = () => {
       const quizData = quizSnap.data();
 
       if (quizData.status !== "published") {
-        alert("This quiz is not published.");
+        toast.error("This quiz is not published.");
 
         setQuiz(null);
 
@@ -83,7 +84,7 @@ const RequestRegister = () => {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to search quiz.");
+      toast.error("Unable to search quiz.");
     } finally {
       setLoading(false);
     }
@@ -125,11 +126,11 @@ const RequestRegister = () => {
 
       setStatus("requested");
 
-      alert("Registration request sent.");
+      toast.success("Registration request sent.");
     } catch (err) {
       console.log(err);
 
-      alert("Unable to send request.");
+      toast.error("Unable to send request.");
     }
   };
 

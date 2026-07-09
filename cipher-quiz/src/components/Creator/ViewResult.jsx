@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../User/Header";
 import "../../StyleSheet/ViewResult.css";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -57,7 +56,6 @@ const ViewResult = ({ quizId }) => {
 
   return (
     <>
-      <Header />
       <div className="view-result-page">
         <div className="result-header">
           <h1>Quiz Leaderboard</h1>

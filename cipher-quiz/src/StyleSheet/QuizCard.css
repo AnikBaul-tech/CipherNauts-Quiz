@@ -1,0 +1,210 @@
+.quiz-card {
+  background: var(--surface);
+
+  border-radius: var(--radius-large);
+
+  padding: 24px;
+
+  box-shadow: var(--shadow-small);
+
+  border: 1px solid var(--border);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  transition: var(--transition);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.quiz-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: var(--shadow-large);
+
+  border-color: var(--primary);
+}
+
+/* ---------- Heading ---------- */
+
+.quiz-card h2 {
+  color: var(--text-primary);
+
+  font-size: 1.35rem;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.quiz-description {
+  color: var(--text-secondary);
+
+  line-height: 1.7;
+
+  min-height: 48px;
+}
+
+/* ---------- Status ---------- */
+
+.status {
+  display: flex;
+}
+
+#draft,
+#published {
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+
+  width: fit-content;
+}
+
+#draft {
+  background: var(--warning-bg);
+
+  color: var(--warning);
+}
+
+#published {
+  background: var(--success-bg);
+
+  color: var(--success);
+}
+
+/* ---------- Quiz Info ---------- */
+
+.quiz-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 10px 0;
+
+  border-top: 1px solid var(--border);
+}
+
+.quiz-info span {
+  color: var(--text-secondary);
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+}
+
+/* ---------- Actions ---------- */
+
+.quiz-actions {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 8px;
+}
+
+.quiz-actions button {
+  flex: 1;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-primary,
+.btn-delete-homer,
+.btn-secondary {
+  padding: 12px 18px;
+
+  border-radius: var(--radius-small);
+
+  font-weight: 600;
+
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--primary);
+
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+
+  transform: translateY(-2px);
+}
+
+.btn-delete-home {
+  background: var(--danger);
+
+  color: white;
+}
+
+.btn-delete-home :hover {
+  opacity: 0.9;
+
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--surface-light);
+
+  color: var(--text-secondary);
+
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.btn-secondary:disabled {
+  background: var(--disabled-bg);
+
+  color: var(--disabled-text);
+
+  cursor: not-allowed;
+}
+
+/* ---------- Single Buttons ---------- */
+
+.quiz-card > button {
+  width: 100%;
+
+  padding: 12px;
+
+  border-radius: var(--radius-small);
+
+  font-weight: 600;
+
+  background: var(--primary);
+
+  color: white;
+
+  transition: var(--transition);
+}
+
+.quiz-card > button:hover:not(:disabled) {
+  background: var(--primary-hover);
+
+  transform: translateY(-2px);
+}
+
+.quiz-card > button:disabled {
+  background: var(--disabled-bg);
+
+  color: var(--disabled-text);
+
+  cursor: not-allowed;
+}

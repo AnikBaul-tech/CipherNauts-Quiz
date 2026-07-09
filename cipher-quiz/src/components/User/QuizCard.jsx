@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
+import "../../StyleSheet/QuizCard.css"
 
 const QuizCard = ({ quiz, view, onDelete }) => {
   const navigate = useNavigate();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const now = new Date();
 
@@ -14,38 +15,62 @@ const QuizCard = ({ quiz, view, onDelete }) => {
     switch (view) {
       case "created":
         return (
-          <>
-            <button onClick={() => navigate(`/quiz-room/${quiz.id}`)}>
+          <div className="quiz-actions">
+            <button
+              className="btn-primary"
+              onClick={() => navigate(`/quiz-room/${quiz.id}`)}
+            >
               Open Quiz Room
             </button>
 
-            <button className="delete-btn" onClick={() => onDelete(quiz)}>
+            <button
+              className="btn-delete-home"
+              onClick={() => onDelete(quiz)}
+            >
               Delete
             </button>
-          </>
+          </div>
         );
 
       case "pending":
-        return <button disabled>Request Pending</button>;
+        return (
+          <button className="btn-secondary" disabled>
+            Request Pending
+          </button>
+        );
 
       case "registered":
         if (startTime && now < startTime) {
-          return <button disabled>Starts Soon</button>;
+          return (
+            <button className="btn-secondary" disabled>
+              Starts Soon
+            </button>
+          );
         }
 
         if (startTime && endTime && now >= startTime && now <= endTime) {
           return (
-            <button onClick={() => navigate(`/attempt-quiz/${quiz.id}`)}>
+            <button
+              className="btn-primary"
+              onClick={() => navigate(`/attempt-quiz/${quiz.id}`)}
+            >
               Start Quiz
             </button>
           );
         }
 
-        return <button disabled>Quiz Ended</button>;
+        return (
+          <button className="btn-secondary" disabled>
+            Quiz Ended
+          </button>
+        );
 
       case "participated":
         return (
-          <button onClick={() => navigate(`/result/${quiz.id}/${user.uid}`)}>
+          <button
+            className="btn-primary"
+            onClick={() => navigate(`/result/${quiz.id}/${user.uid}`)}
+          >
             View Result
           </button>
         );
@@ -57,9 +82,10 @@ const QuizCard = ({ quiz, view, onDelete }) => {
 
   return (
     <div className="quiz-card">
+
       <h2>{quiz.title}</h2>
 
-      <p>{quiz.description}</p>
+      <p className="quiz-description">{quiz.description}</p>
 
       {view === "created" && (
         <span className="status">
@@ -84,6 +110,7 @@ const QuizCard = ({ quiz, view, onDelete }) => {
       </div>
 
       {renderAction()}
+
     </div>
   );
 };

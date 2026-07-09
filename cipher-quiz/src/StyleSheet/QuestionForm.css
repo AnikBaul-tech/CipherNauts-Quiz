@@ -1,64 +1,137 @@
+.creator-shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px var(--page-padding) 48px;
+}
+
 .form-card {
-  background: #121212;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 20px;
-  color: #fff;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-large);
+  padding: 24px;
+  margin: 24px 0 40px;
+  box-shadow: var(--shadow-small);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .input {
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
-  background: #1e1e1e;
-  border: 1px solid #3a3a3a;
-  border-radius: 6px;
-  color: #eaeaea;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+  border: 1px solid var(--border);
+  background: var(--surface-light);
+  color: var(--text-primary);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
 }
 
 .input.small {
-  width: 48%;
+  width: min(220px, 100%);
 }
 
 .row {
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .options-container {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
 }
 
 .option-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+}
+
+.option-row .input {
+  margin: 0;
 }
 
 .option-row button {
-  background: transparent;
-  border: none;
-  color: #f87171;
-  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--danger);
+}
+
+.option-row button:hover {
+  background: var(--danger-bg);
 }
 
 .btn {
-  background: #2a2a2a;
-  border: 1px solid #444;
-  padding: 8px 12px;
-  border-radius: 6px;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 10px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .btn.primary {
-  background: #ca591c;
-  border-color: #f16d15;
+  background: var(--primary);
+  color: white;
+  border-color: transparent;
+}
+
+.btn.primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .radio {
-  accent-color: green;
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+}
+
+textarea.input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+@media (max-width: 720px) {
+  .creator-shell {
+    padding: 20px 16px 40px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .input.small {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
 }

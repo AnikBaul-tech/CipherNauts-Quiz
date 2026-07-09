@@ -15,42 +15,48 @@ const QuizRoom = () => {
   return (
     <>
       <Header />
-      <div className="quiz-room-nav">
-        <button
-          className={activeTab === "questions" ? "active" : ""}
-          onClick={() => setActiveTab("questions")}
-        >
-          Questions
-        </button>
+      <div className="quiz-room-page">
+        <div className="quiz-room-header">
+          <h1>Quiz Room</h1>
+          <p>Manage questions, participants, results and quiz settings.</p>
+        </div>
+        <div className="quiz-room-nav">
+          <button
+            className={activeTab === "questions" ? "active" : ""}
+            onClick={() => setActiveTab("questions")}
+          >
+            Questions
+          </button>
 
-        <button
-          className={activeTab === "participants" ? "active" : ""}
-          onClick={() => setActiveTab("participants")}
-        >
-          Participants
-        </button>
+          <button
+            className={activeTab === "participants" ? "active" : ""}
+            onClick={() => setActiveTab("participants")}
+          >
+            Participants
+          </button>
 
-        <button
-          className={activeTab === "result" ? "active" : ""}
-          onClick={() => setActiveTab("result")}
-        >
-          View Result
-        </button>
+          <button
+            className={activeTab === "result" ? "active" : ""}
+            onClick={() => setActiveTab("result")}
+          >
+            View Result
+          </button>
 
-        <button
-          className={activeTab === "settings" ? "active" : ""}
-          onClick={() => setActiveTab("settings")}
-        >
-          Settings
-        </button>
+          <button
+            className={activeTab === "settings" ? "active" : ""}
+            onClick={() => setActiveTab("settings")}
+          >
+            Settings
+          </button>
+        </div>
+        {activeTab === "questions" && <QuestionForm quizId={quizId} />}
+
+        {activeTab === "participants" && <AllParticipants quizId={quizId} />}
+
+        {activeTab === "result" && <ViewResult quizId={quizId} />}
+
+        {activeTab === "settings" && <SettingsView quizId={quizId} />}
       </div>
-      {activeTab === "questions" && <QuestionForm quizId={quizId} />}
-
-      {activeTab === "participants" && <AllParticipants quizId={quizId} />}
-
-      {activeTab === "result" && <ViewResult quizId={quizId} />}
-
-      {activeTab === "settings" && <SettingsView quizId={quizId} />}
     </>
   );
 };

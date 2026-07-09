@@ -1,62 +1,235 @@
-.quiz-room-nav {
-  display: flex;
+.quiz-room-page {
+  max-width: 1400px;
 
-  gap: 15px;
+  margin: 0 auto;
 
+  padding: 36px var(--page-padding) 60px;
+}
+
+/* ---------- Page Header ---------- */
+
+.quiz-room-header {
   margin-bottom: 30px;
 }
 
+.quiz-room-header h1 {
+  font-size: 2rem;
+
+  color: var(--text-primary);
+
+  margin-bottom: 8px;
+}
+
+.quiz-room-header p {
+  color: var(--text-secondary);
+
+  font-size: 1rem;
+}
+
+/* ---------- Tabs ---------- */
+
+.quiz-room-nav {
+  width: fit-content;
+
+  display: flex;
+
+  gap: 10px;
+
+  margin: 0 auto 28px;
+
+  padding: 8px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  box-shadow: var(--shadow-small);
+}
+
 .quiz-room-nav button {
-  padding: 12px 25px;
+  padding: 12px 22px;
 
-  border: none;
+  background: transparent;
 
-  background: #181818;
+  color: var(--text-secondary);
 
-  color: white;
+  border-radius: 999px;
 
-  border-radius: 8px;
+  font-weight: 600;
 
-  cursor: pointer;
+  transition: var(--transition);
+}
 
-  transition: 0.25s;
+.quiz-room-nav button:hover {
+  background: var(--surface-hover);
+
+  color: var(--primary);
 }
 
 .quiz-room-nav button.active {
-  background: #2563eb;
+  background: var(--primary);
+
+  color: white;
 }
 
-.participants-page,
-.settings-page {
-  background: #171717;
+/* ---------- Main Content ---------- */
 
-  padding: 25px;
-
-  border-radius: 15px;
+.quiz-room-content {
+  margin-top: 10px;
 }
+
+/* ---------- Participant Card ---------- */
 
 .participant-card {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 
-  padding: 18px;
+  padding: 18px 22px;
 
-  border-bottom: 1px solid #2d2d2d;
+  background: var(--surface-light);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-medium);
+
+  margin-bottom: 16px;
+
+  transition: var(--transition);
 }
+
+.participant-card:hover {
+  background: var(--surface-hover);
+
+  border-color: var(--primary);
+
+  transform: translateY(-2px);
+}
+
+.participant-card:last-child {
+  margin-bottom: 0;
+}
+
+.participant-card h3 {
+  color: var(--text-primary);
+
+  margin-bottom: 5px;
+}
+
+.participant-card p {
+  color: var(--text-secondary);
+
+  font-size: 0.95rem;
+}
+
+/* ---------- Buttons inside participant ---------- */
 
 .participant-card button {
   margin-left: 10px;
+
+  padding: 9px 18px;
+
+  border-radius: var(--radius-small);
+
+  font-weight: 600;
 }
+
+.participant-card button:first-of-type {
+  background: var(--success);
+
+  color: white;
+}
+
+.participant-card button:first-of-type:hover {
+  filter: brightness(1.05);
+}
+
+.participant-card button:last-of-type {
+  background: var(--danger);
+
+  color: white;
+}
+
+.participant-card button:last-of-type:hover {
+  filter: brightness(1.05);
+}
+
+/* ---------- Settings ---------- */
 
 .setting-row {
   display: flex;
 
   justify-content: space-between;
 
-  padding: 15px 0;
+  align-items: center;
 
-  border-bottom: 1px solid #2d2d2d;
+  padding: 18px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row h3 {
+  color: var(--text-primary);
+
+  font-size: 1rem;
+}
+
+.setting-row p {
+  color: var(--text-secondary);
+
+  margin-top: 4px;
+}
+
+.setting-row button {
+  background: var(--primary);
+
+  color: white;
+
+  padding: 10px 20px;
+
+  border-radius: var(--radius-small);
+
+  font-weight: 600;
+}
+
+.setting-row button:hover {
+  background: var(--primary-hover);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .quiz-room-nav {
+    width: 100%;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .quiz-room-nav button {
+    flex: 1 1 45%;
+  }
+
+  .participant-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .setting-row {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
 }

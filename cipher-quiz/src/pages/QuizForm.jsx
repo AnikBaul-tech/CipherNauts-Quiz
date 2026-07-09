@@ -12,21 +12,27 @@ const QuizForm = ({
   submitted
 }) => {
   const handleAnswer = (index, questionId, answer) => {
-    setAnswers((prev) => ({
-      ...prev,
-
-      [questionId]: answer,
-    }));
-
+    setAnswers((prev) => {
+      const updated = { ...prev };
+  
+      if (answer === null) {
+        delete updated[questionId];
+      } else {
+        updated[questionId] = answer;
+      }
+  
+      return updated;
+    });
+  
     setAttempted((prev) => {
       const updated = [...prev];
-
-      updated[index] = true;
-
+  
+      updated[index] = answer !== null;
+  
       return updated;
     });
   };
-  console.log("QuizForm answers:", answers);
+ 
 
   const handleSubmit = () => {
     onSubmit();

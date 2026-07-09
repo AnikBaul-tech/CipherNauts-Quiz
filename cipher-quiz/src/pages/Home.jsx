@@ -17,6 +17,7 @@ import { useAuth } from "../context/AuthProvider";
 import QuizCard from "../components/User/QuizCard";
 import QuizCardSkeleton from "../components/Skeleton/QuizCardSkeletonHome.jsx";
 import Header from "../components/User/Header.jsx";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -189,7 +190,7 @@ const Home = () => {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to delete quiz.");
+      toast.error("Unable to delete the Quiz!");
     }
   };
   const requestQuiz = async () => {
@@ -204,96 +205,125 @@ const Home = () => {
     <>
       <Header />
       <div className="home-page">
-        <div className="home-header">
-          <h1 className="main-heading">Quiz Dashboard</h1>
-
-          <button className="logout-btn" onClick={signOutWithGoogle}>
-            Logout
-          </button>
-        </div>
-
-        {/* Create Quiz Section */}
-        <div className="home-options-container">
-          <div className="create-card">
-            <button className="create-icon" onClick={createQuiz}>
-              +
-            </button>
-            <div className="create-content">
-              <h2>Create Quiz</h2>
-              <p>
-                Create a new timed quiz form with MCQ and subjective questions.
+        <div className="page-shell">
+          <section className="home-hero">
+            <div className="home-hero-content">
+              <p className="eyebrow">Workspace overview</p>
+              <h1 className="main-heading">Quiz Dashboard</h1>
+              <p className="home-subtitle">
+                Create, manage, and track your quiz experience from one calm workspace.
               </p>
             </div>
-          </div>
-        </div>
 
-        <div className="home-options-container">
-          <div className="create-card">
-            <button className="create-icon" onClick={requestQuiz}>
-              =
-            </button>
-            <div className="create-content">
-              <h2>Attempt Quiz</h2>
-              <p>Request to Register for a quiz.</p>
+            <div className="home-actions">
+              <button className="profile-btn" onClick={goToProfile}>
+                Profile
+              </button>
+
+              <button className="logout-btn" onClick={signOutWithGoogle}>
+                Logout
+              </button>
+            </div>
+          </section>
+
+          <div className="quick-actions">
+            <div className="create-card">
+              <button className="create-icon" onClick={createQuiz}>
+                +
+              </button>
+              <div className="create-content">
+                <h2>Create Quiz</h2>
+                <p>
+                  Create a new timed quiz form with MCQ and subjective questions.
+                </p>
+              </div>
+            </div>
+            <div className="create-card">
+              <button className="create-icon" onClick={requestQuiz}>
+                =
+              </button>
+              <div className="create-content">
+                <h2>Attempt Quiz</h2>
+                <p>Request to register for a quiz.</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="option-selector">
-          <div
-            className={`option ${selectedOption === "created" ? "active" : ""}`}
-            onClick={() => setSelectedOption("created")}
-          >
-            Created
-          </div>
+          <section className="dashboard-section">
+            <div className="dashboard-tabs">
+              <div className="dashboard-title">
+                <h2>
+                  {selectedOption.charAt(0).toUpperCase() + selectedOption.slice(1)}{" "}
+                  Quizzes
+                </h2>
 
-          <div
-            className={`option ${selectedOption === "pending" ? "active" : ""}`}
-            onClick={() => setSelectedOption("pending")}
-          >
-            Pending
-          </div>
+                <span>
+                  {quizzes.length} {quizzes.length === 1 ? "Quiz" : "Quizzes"}
+                </span>
+              </div>
 
-          <div
-            className={`option ${
-              selectedOption === "registered" ? "active" : ""
-            }`}
-            onClick={() => setSelectedOption("registered")}
-          >
-            Registered
-          </div>
+              <div className="option-selector">
+                <button
+                  className={`option ${
+                    selectedOption === "created" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedOption("created")}
+                >
+                  Created
+                </button>
 
-          <div
-            className={`option ${
-              selectedOption === "participated" ? "active" : ""
-            }`}
-            onClick={() => setSelectedOption("participated")}
-          >
-            Participated
-          </div>
-        </div>
+                <button
+                  className={`option ${
+                    selectedOption === "pending" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedOption("pending")}
+                >
+                  Pending
+                </button>
 
-        <div className="published-quizzes">
-          {loadingQuizzes ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <QuizCardSkeleton key={index} />
-            ))
-          ) : quizzes.length === 0 ? (
-            <h3>No Published Quiz Yet</h3>
-          ) : (
-            quizzes.map((quiz) => (
-              <QuizCard
-                key={quiz.id}
-                quiz={quiz}
-                view={selectedOption}
-                onDelete={(quiz) => {
-                  setSelectedQuiz(quiz);
+                <button
+                  className={`option ${
+                    selectedOption === "registered" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedOption("registered")}
+                >
+                  Registered
+                </button>
 
-                  setShowDeleteModal(true);
-                }}
-              />
-            ))
-          )}
+                <button
+                  className={`option ${
+                    selectedOption === "participated" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedOption("participated")}
+                >
+                  Participated
+                </button>
+              </div>
+            </div>
+
+            <div className="published-quizzes">
+              {loadingQuizzes ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <QuizCardSkeleton key={index} />
+                ))
+              ) : quizzes.length === 0 ? (
+                <h3>No Published Quiz Yet</h3>
+              ) : (
+                quizzes.map((quiz) => (
+                  <QuizCard
+                    key={quiz.id}
+                    quiz={quiz}
+                    view={selectedOption}
+                    onDelete={(quiz) => {
+                      setSelectedQuiz(quiz);
+
+                      setShowDeleteModal(true);
+                    }}
+                  />
+                ))
+              )}
+            </div>
+          </section>
         </div>
         {showDeleteModal && (
           <div className="modal-overlay">

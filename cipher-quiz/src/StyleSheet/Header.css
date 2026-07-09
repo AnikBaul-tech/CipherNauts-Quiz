@@ -1,60 +1,120 @@
 .header {
-  width: 100%;
-  height: 70px;
+  height: var(--header-height);
 
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
-  padding: 0 40px;
+  padding: 0 var(--page-padding);
 
-  background: #1f2937;
-  border-bottom: 1px solid #374151;
+  background: var(--surface);
 
-  box-sizing: border-box;
+  border-bottom: 1px solid var(--border);
+
+  box-shadow: var(--shadow-small);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: var(--z-header);
 }
 
-.header-left h2 {
-  margin: 0;
+.header-left {
+  display: flex;
 
-  color: #f8fafc;
+  flex-direction: column;
 
-  font-size: 1.5rem;
-  font-weight: 600;
+  justify-content: center;
+}
+
+.welcome-text {
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+
+  margin-bottom: 4px;
 }
 
 .username {
-  color: #3b82f6;
+  color: var(--text-primary);
+
+  font-size: 1.7rem;
+
   font-weight: 700;
+
+  line-height: 1;
 }
 
 .header-right {
   display: flex;
+
   align-items: center;
+
+  gap: 14px;
 }
 
-.home-btn {
-  padding: 10px 22px;
+.icon-btn {
+  width: 46px;
 
-  border: none;
-  border-radius: 8px;
+  height: 46px;
 
-  background: #2563eb;
-  color: white;
+  display: flex;
 
-  font-size: 0.95rem;
-  font-weight: 600;
+  justify-content: center;
 
-  cursor: pointer;
+  align-items: center;
 
-  transition: 0.2s;
+  border-radius: 50%;
+
+  background: var(--surface-light);
+
+  color: var(--text-primary);
+
+  border: 1px solid var(--border);
+
+  font-size: 1.2rem;
+
+  transition: var(--transition);
 }
 
-.home-btn:hover {
-  background: #1d4ed8;
+.icon-btn:hover {
+  background: var(--surface-hover);
+
   transform: translateY(-2px);
 }
 
-.home-btn:active {
-  transform: scale(0.98);
+.primary-btn {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 20px;
+
+  background: var(--primary);
+
+  color: white;
+
+  border-radius: var(--radius-small);
+
+  font-weight: 600;
+
+  transition: var(--transition);
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+
+  transform: translateY(-2px);
+}
+
+.primary-btn svg,
+.icon-btn svg {
+  font-size: 1.1rem;
 }

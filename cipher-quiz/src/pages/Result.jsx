@@ -84,7 +84,10 @@ const Result = () => {
       <Header />
       <div className="result-page">
         <div className="result-left">
-          <h1 className="result-heading">Quiz Result</h1>
+          <div className="result-heading">
+            <h1>Quiz Result</h1>
+            <p>Review every answer and compare it with the correct solution.</p>
+          </div>
 
           {responses.map((response, index) => (
             <ResultQuestion

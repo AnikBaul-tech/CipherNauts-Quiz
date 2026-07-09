@@ -127,9 +127,9 @@ const Profile = () => {
 
       if (p >= 95) gold++;
 
-      if (p >= 90) silver++;
+      else if (p >= 90) silver++;
 
-      if (p >= 85) bronze++;
+      else if (p >= 85) bronze++;
     });
 
     setStats({

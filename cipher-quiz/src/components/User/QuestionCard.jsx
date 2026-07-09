@@ -11,7 +11,7 @@ const QuestionCard = ({
   disabled,
 }) => {
   return (
-    <div className="question-card">
+    <div className="question-card-box">
       <div className="question-header">
         <div className="question-text">{question}</div>
         <div className="question-points">{points} pts</div>
@@ -24,13 +24,22 @@ const QuestionCard = ({
               className={`option ${answer === opt ? "selected" : ""} ${
                 disabled ? "disabled" : ""
               }`}
-              onClick={() => !disabled && onSelect(opt)}
+              onClick={() => {
+                if (disabled) return;
+
+                if (answer === opt) {
+                  onSelect(null); // unselect
+                } else {
+                  onSelect(opt); // select
+                }
+              }}
             >
               {opt}
             </div>
           ))
         ) : (
           <textarea
+            className="answer-input"
             value={answer || ""}
             disabled={disabled}
             onChange={(e) => onSelect(e.target.value)}

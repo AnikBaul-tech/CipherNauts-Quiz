@@ -19,6 +19,7 @@ import Reflector from "../components/User/Reflector";
 import QuizForm from "../pages/QuizForm";
 
 import "../StyleSheet/Quiz.css";
+import { toast } from "react-toastify";
 
 const Quiz = () => {
   const { quizId } = useParams();
@@ -114,7 +115,7 @@ const Quiz = () => {
         const requestSnap = await getDoc(requestRef);
 
         if (!requestSnap.exists()) {
-          alert("You are not registered for this quiz.");
+          toast.warning("You are not registered for this quiz.");
 
           navigate("/home");
 
@@ -124,13 +125,13 @@ const Quiz = () => {
         const data = requestSnap.data();
 
         if (data.status === "attempted") {
-          alert("Quiz already attempted.");
+          toast.info("Quiz already attempted.");
           navigate("/home");
           return;
         }
 
         if (data.status !== "accepted") {
-          alert("You are not allowed .");
+          toast.warning("You are not allowed .");
 
           navigate("/home");
 
@@ -155,8 +156,6 @@ const Quiz = () => {
     return () => clearInterval(interval);
   }, [quiz]);
 
-
-
   const submitQuiz = async () => {
     if (submittedRef.current) return;
 
@@ -176,7 +175,7 @@ const Quiz = () => {
       const responses = [];
 
       if (questions.length === 0) {
-        alert("Questions are still loading.");
+        toast.info("Questions are still loading.");
         submittedRef.current = false;
         setSubmitted(false);
         return;
@@ -301,7 +300,7 @@ const Quiz = () => {
         }
       );
 
-      alert("Quiz Submitted Successfully.");
+      toast.success("Quiz Submitted Successfully.");
 
       navigate(`/result/${quizId}/${user.uid}`);
     } catch (err) {
@@ -318,39 +317,48 @@ const Quiz = () => {
 
   return (
     <div className="quiz-page">
-      <Subheading quiz={quiz} />
-
-      <div className="quiz-container">
-        <div className="quiz-left">
-          <QuizForm
-            questions={questions}
-            attempted={attempted}
-            setAttempted={setAttempted}
-            answers={answers}
-            setAnswers={setAnswers}
-            submitted={submitted}
-            onSubmit={submitQuiz}
-            disabled={quizEnded}
-          />
+      <div className="quiz-wrapper">
+        <div className="quiz-heading">
+          <div>
+            <h1>Attempt Quiz</h1>
+            <p>Answer every question before the timer expires.</p>
+          </div>
         </div>
 
-        <div className="quiz-right">
-          <div className="timer-card">
-            <Timer
-              endTime={quiz.endTime}
-              warningTime={60}
-              pause={submitted}
-              onTick={setTimeLeft}
-              onTimeUp={submitQuiz}
+        <Subheading quiz={quiz} />
+
+        <div className="quiz-container">
+          <div className="quiz-left">
+            <QuizForm
+              questions={questions}
+              attempted={attempted}
+              setAttempted={setAttempted}
+              answers={answers}
+              setAnswers={setAnswers}
+              submitted={submitted}
+              onSubmit={submitQuiz}
+              disabled={quizEnded}
             />
           </div>
 
-          <div className="reflector-card">
-            <Reflector
-              totalQs={quiz.totalQuestions}
-              attempted={attempted}
-              timeLeft={timeLeft}
-            />
+          <div className="quiz-right">
+            <div className="timer-card">
+              <Timer
+                endTime={quiz.endTime}
+                warningTime={60}
+                pause={submitted}
+                onTick={setTimeLeft}
+                onTimeUp={submitQuiz}
+              />
+            </div>
+
+            <div className="reflector-card">
+              <Reflector
+                totalQs={quiz.totalQuestions}
+                attempted={attempted}
+                timeLeft={timeLeft}
+              />
+            </div>
           </div>
         </div>
       </div>

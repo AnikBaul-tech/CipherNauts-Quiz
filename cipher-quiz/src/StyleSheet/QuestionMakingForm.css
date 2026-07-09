@@ -1,146 +1,133 @@
-/* Outer Container */
+.question-making-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--background) 0%, var(--surface-light) 100%);
+  
+}
 
 .quiz-form-container {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px var(--page-padding) 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-/* Card */
 
 .quiz-form {
-    width: 100%;
-    max-width: 700px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    padding: 35px;
-
-    background: #121212;
-
-    border: 1px solid #2a2a2a;
-    border-radius: 18px;
-
-    box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-medium);
 }
 
-/* Heading */
+.quiz-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
 .quiz-form h2 {
-    color: white;
-    margin: 0 0 10px;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: .5px;
+  color: var(--text-primary);
+  margin: 0;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.quiz-form h2::after{
-    content:"";
-    display:block;
-    margin-top:8px;
-    width:70px;
-    height:3px;
-    background:linear-gradient(90deg,#2563eb,#facc15);
-    border-radius:2px;
+.form-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.96rem;
 }
 
-/* Inputs */
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
 
 .quiz-form input,
-.quiz-form textarea{
-
-    width:100%;
-
-    padding:14px 18px;
-
-    background:#1b1b1b;
-
-    border:1px solid #303030;
-
-    border-radius:10px;
-
-    color:white;
-
-    font-size:15px;
-
-    transition:.25s;
+.quiz-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  color: var(--text-primary);
+  font-size: 0.96rem;
+  transition: var(--transition);
 }
-
-/* Placeholder */
 
 .quiz-form input::placeholder,
-.quiz-form textarea::placeholder{
-
-    color:#888;
+.quiz-form textarea::placeholder {
+  color: var(--text-muted);
 }
-
-/* Focus */
 
 .quiz-form input:focus,
-.quiz-form textarea:focus{
-
-    outline:none;
-
-    border-color:#2563eb;
-
-    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+.quiz-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-/* Description */
-
-.quiz-form textarea{
-
-    resize:vertical;
-
-    min-height:120px;
-
-    font-family:inherit;
+.quiz-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
 }
 
-/* Date Picker */
-
-.quiz-form input[type="datetime-local"]{
-
-    color:#ddd;
+.quiz-form input[type="datetime-local"] {
+  color: var(--text-primary);
 }
 
-/* Submit Button */
-
-.quiz-form button{
-
-    margin-top:10px;
-
-    padding:14px;
-
-    background:#2563eb;
-
-    color:white;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    transition:.25s;
+.quiz-form button {
+  margin-top: 6px;
+  padding: 13px 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.96rem;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
-.quiz-form button:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-2px);
-
-    box-shadow:0 8px 18px rgba(37,99,235,.3);
+.quiz-form button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-small);
 }
 
-.quiz-form button:active{
+.quiz-form button:active {
+  transform: scale(0.98);
+}
 
-    transform:scale(.98);
+@media (max-width: 720px) {
+  .quiz-form-container {
+    padding: 24px 16px 40px;
+  }
+
+  .quiz-form {
+    padding: 24px;
+  }
 }

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
 
-
-
 body {
   margin: 0;
   background: linear-gradient(180deg, var(--background) 0%, var(--surface-light) 100%);

@@ -9,8 +9,6 @@ const AuthPage = () => {
   const signInWithGoogle = async () => {
     try {
       await login();
-
-
     } catch (err) {
       console.error(err);
     }
