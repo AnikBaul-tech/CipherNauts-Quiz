@@ -1,93 +1,69 @@
 .timer {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   min-width: 180px;
-
-  padding: 18px 28px;
-
+  padding: 16px 22px;
   background: var(--surface);
-
   color: var(--success);
-
   border: 2px solid var(--success);
-
   border-radius: var(--radius-large);
-
   box-shadow: var(--shadow-small);
-
   font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
-
-  font-size: 2.3rem;
-
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 700;
-
-  letter-spacing: 3px;
-
+  letter-spacing: 0.15em;
   transition: var(--transition);
-
   user-select: none;
+  width: 100%;
+  max-width: 220px;
 }
 
 .timer:hover {
   transform: translateY(-2px);
-
   box-shadow: var(--shadow-medium);
 }
 
-/* ===============================
-          Warning
-================================ */
-
 .warning {
   color: var(--danger);
-
   border-color: var(--danger);
-
   background: var(--danger-bg);
-
   animation: timerPulse 0.9s infinite;
 }
-
-/* ===============================
-        Animation
-================================ */
 
 @keyframes timerPulse {
   0% {
     transform: scale(1);
-
     box-shadow: 0 0 0 rgba(220, 38, 38, 0.35);
   }
-
   50% {
     transform: scale(1.04);
-
     box-shadow: 0 0 18px rgba(220, 38, 38, 0.28);
   }
-
   100% {
     transform: scale(1);
-
     box-shadow: 0 0 0 rgba(220, 38, 38, 0);
   }
 }
 
-/* ===============================
-        Responsive
-================================ */
-
 @media (max-width: 768px) {
   .timer {
-    min-width: 150px;
-
-    font-size: 1.9rem;
-
-    padding: 16px 20px;
-
-    letter-spacing: 2px;
+    max-width: 100%;
+    min-width: 0;
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+    padding: 14px 18px;
+    letter-spacing: 0.12em;
+  }
+}
+@media (max-width: 1100px) {
+  .timer {
+    position: sticky;
+    top: 8px;
+    z-index: 50;
+    min-width: unset;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 1.4rem;
   }
 }

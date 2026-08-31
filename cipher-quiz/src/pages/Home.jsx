@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../StyleSheet/HomePage.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   collection,
   query,
@@ -27,23 +27,27 @@ const Home = () => {
   const [loadingQuizzes, setLoadingQuizzes] = useState(true);
   const [selectedOption, setSelectedOption] = useState("created");
   const { user, loading, logout } = useAuth();
+  const notificationMounted = useRef(false);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    setLoadingQuizzes(true);
+    if (notificationMounted.current) return;
+    notificationMounted.current = true;
+    const showWelcome = () => {
+      toast.success("Welcome! Try to use in desktop mode.");
+    };
+    showWelcome();
+  }, [user]);
   //  Logics for the Selection Tab
   useEffect(() => {
     if (!user) return;
-
-    setLoadingQuizzes(true);
-
     // ---------------- CREATED ----------------
 
     if (selectedOption === "created") {
       const q = query(
         collection(db, "quizzes"),
 
-        where("authorId", "==", user.uid)
+        where("authorId", "==", user.uid),
       );
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -60,7 +64,6 @@ const Home = () => {
 
       return () => unsubscribe();
     }
-
     const fetchRequestQuizzes = async () => {
       try {
         let status = "";
@@ -88,7 +91,7 @@ const Home = () => {
         const requestQuery = query(
           collection(db, "users", user.uid, "requestQuiz"),
 
-          where("status", "==", status)
+          where("status", "==", status),
         );
 
         const requestSnapshot = await getDocs(requestQuery);
@@ -99,7 +102,7 @@ const Home = () => {
 
             "quizzes",
 
-            requestDoc.id
+            requestDoc.id,
           );
 
           const quizSnap = await getDoc(quizRef);
@@ -128,6 +131,10 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const signOutWithGoogle = async () => {
     try {
       await logout();
@@ -149,7 +156,7 @@ const Home = () => {
       // ----------------------------
 
       const questionSnapshot = await getDocs(
-        collection(db, "quizzes", selectedQuiz.id, "questions")
+        collection(db, "quizzes", selectedQuiz.id, "questions"),
       );
 
       for (const question of questionSnapshot.docs) {
@@ -161,7 +168,7 @@ const Home = () => {
       // ----------------------------
 
       const requestSnapshot = await getDocs(
-        collection(db, "quizzes", selectedQuiz.id, "requested")
+        collection(db, "quizzes", selectedQuiz.id, "requested"),
       );
 
       for (const request of requestSnapshot.docs) {
@@ -170,7 +177,7 @@ const Home = () => {
         // Remove from user's requestQuiz collection
 
         await deleteDoc(
-          doc(db, "users", requesterId, "requestQuiz", selectedQuiz.id)
+          doc(db, "users", requesterId, "requestQuiz", selectedQuiz.id),
         );
 
         // Remove from quiz's requested collection
@@ -211,7 +218,8 @@ const Home = () => {
               <p className="eyebrow">Workspace overview</p>
               <h1 className="main-heading">Quiz Dashboard</h1>
               <p className="home-subtitle">
-                Create, manage, and track your quiz experience from one calm workspace.
+                Create, manage, and track your quiz experience from one calm
+                workspace.
               </p>
             </div>
 
@@ -234,7 +242,8 @@ const Home = () => {
               <div className="create-content">
                 <h2>Create Quiz</h2>
                 <p>
-                  Create a new timed quiz form with MCQ and subjective questions.
+                  Create a new timed quiz form with MCQ and subjective
+                  questions.
                 </p>
               </div>
             </div>
@@ -253,7 +262,8 @@ const Home = () => {
             <div className="dashboard-tabs">
               <div className="dashboard-title">
                 <h2>
-                  {selectedOption.charAt(0).toUpperCase() + selectedOption.slice(1)}{" "}
+                  {selectedOption.charAt(0).toUpperCase() +
+                    selectedOption.slice(1)}{" "}
                   Quizzes
                 </h2>
 
@@ -264,7 +274,7 @@ const Home = () => {
 
               <div className="option-selector">
                 <button
-                  className={`option ${
+                  className={`home-nav-option ${
                     selectedOption === "created" ? "active" : ""
                   }`}
                   onClick={() => setSelectedOption("created")}
@@ -273,7 +283,7 @@ const Home = () => {
                 </button>
 
                 <button
-                  className={`option ${
+                  className={`home-nav-option ${
                     selectedOption === "pending" ? "active" : ""
                   }`}
                   onClick={() => setSelectedOption("pending")}
@@ -282,7 +292,7 @@ const Home = () => {
                 </button>
 
                 <button
-                  className={`option ${
+                  className={`home-nav-option ${
                     selectedOption === "registered" ? "active" : ""
                   }`}
                   onClick={() => setSelectedOption("registered")}
@@ -291,7 +301,7 @@ const Home = () => {
                 </button>
 
                 <button
-                  className={`option ${
+                  className={`home-nav-option ${
                     selectedOption === "participated" ? "active" : ""
                   }`}
                   onClick={() => setSelectedOption("participated")}

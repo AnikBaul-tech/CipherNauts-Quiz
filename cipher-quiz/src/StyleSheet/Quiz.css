@@ -1,129 +1,75 @@
 .quiz-page {
   min-height: 100vh;
-
   background: var(--background);
-
-  padding: 40px 0;
+  padding: 32px 0 48px;
 }
 
-/* ==============================
-          Wrapper
-================================ */
-
 .quiz-wrapper {
-  width: min(1400px, 94%);
-
+  width: min(1400px, min(94%, calc(100% - 32px)));
   margin: auto;
 }
 
-/* ==============================
-          Heading
-================================ */
-
 .quiz-heading {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
-  margin: 30px 0;
+  gap: 16px;
+  margin: 24px 0 28px;
+  flex-wrap: wrap;
 }
 
 .quiz-heading h1 {
-  font-size: 2rem;
-
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
   color: var(--text-primary);
-
   margin-bottom: 6px;
 }
 
 .quiz-heading p {
   color: var(--text-secondary);
-
   font-size: 0.98rem;
 }
 
-/* ==============================
-          Layout
-================================ */
-
 .quiz-container {
   display: grid;
-
-  grid-template-columns: 2.8fr 1fr;
-
-  gap: 28px;
-
+  grid-template-columns: minmax(0, 2.8fr) minmax(280px, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
-/* ==============================
-          Left
-================================ */
-
 .quiz-left {
   display: flex;
-
   flex-direction: column;
-
-  gap: 24px;
+  gap: 20px;
+  min-width: 0;
 }
-
-/* ==============================
-          Right
-================================ */
 
 .quiz-right {
   position: sticky;
-
   top: 90px;
-
   display: flex;
-
   flex-direction: column;
-
   gap: 20px;
 }
-
-/* ==============================
-        Shared Cards
-================================ */
 
 .timer-card,
 .reflector-card {
   background: var(--surface);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius-large);
-
   box-shadow: var(--shadow-small);
-
   transition: var(--transition);
 }
 
-/* Timer */
-
 .timer-card {
-  padding: 28px;
-
+  padding: 24px;
   display: flex;
-
   justify-content: center;
-
   align-items: center;
 }
 
-/* Reflector */
-
 .reflector-card {
-  padding: 24px;
+  padding: 20px;
 }
-
-/* ==============================
-      Responsive
-================================ */
 
 @media (max-width: 1100px) {
   .quiz-container {
@@ -132,35 +78,37 @@
 
   .quiz-right {
     position: static;
-
-    flex-direction: row;
-
-    align-items: flex-start;
+    flex-direction: column;   /* was: row */
+    align-items: stretch;     /* was: flex-start */
+    gap: 14px;
   }
 
   .timer-card {
-    flex: 1;
+    flex: none;               /* was: flex: 1 */
   }
 
   .reflector-card {
-    flex: 2;
+    flex: none;               /* was: flex: 2 */
   }
 }
 
 @media (max-width: 700px) {
   .quiz-page {
-    padding: 20px 0;
+    padding: 20px 0 36px;
   }
 
   .quiz-heading {
     flex-direction: column;
-
     align-items: flex-start;
-
     gap: 8px;
   }
 
   .quiz-right {
     flex-direction: column;
+  }
+
+  .timer-card,
+  .reflector-card {
+    width: 100%;
   }
 }

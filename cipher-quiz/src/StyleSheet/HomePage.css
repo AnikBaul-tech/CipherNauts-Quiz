@@ -1,6 +1,6 @@
 .home-page {
   min-height: calc(100vh - var(--header-height));
-  padding: 32px var(--page-padding) 56px;
+  padding: 32px clamp(16px, 3vw, 32px) 56px;
   background: linear-gradient(180deg, var(--background) 0%, var(--surface-light) 100%);
   color: var(--text-primary);
 }
@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
-  padding: 28px 32px;
+  padding: clamp(20px, 3vw, 32px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-large);
@@ -47,7 +47,7 @@
 }
 
 .main-heading {
-  font-size: clamp(1.8rem, 2.3vw, 2.3rem);
+  font-size: clamp(1.7rem, 2.3vw, 2.3rem);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -113,7 +113,7 @@
 
 .quick-actions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
 
@@ -121,10 +121,10 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-large);
-  padding: 24px;
+  padding: 22px;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   box-shadow: var(--shadow-small);
   transition: var(--transition);
   cursor: pointer;
@@ -197,9 +197,10 @@
 }
 
 .option-selector {
+  width: fit-content;
   display: flex;
-  align-items: center;
   gap: 8px;
+  margin: 0 auto 24px;
   padding: 8px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -208,24 +209,21 @@
   flex-wrap: wrap;
 }
 
-.option {
+.home-nav-option {
   padding: 10px 16px;
-  border: none;
   background: transparent;
-  border-radius: 999px;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  border-radius: 999px;
   font-weight: 600;
   transition: var(--transition);
-  cursor: pointer;
 }
 
-.option:hover {
+.home-nav-option:hover {
   background: var(--surface-hover);
   color: var(--primary);
 }
 
-.option.active {
+.home-nav-option.active {
   background: var(--primary);
   color: white;
   box-shadow: var(--shadow-small);
@@ -233,13 +231,13 @@
 
 .published-quizzes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
 
 .published-quizzes h3 {
   grid-column: 1 / -1;
-  padding: 48px 24px;
+  padding: 44px 24px;
   text-align: center;
   background: var(--surface);
   border: 1px dashed var(--border);
@@ -257,10 +255,11 @@
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(6px);
   z-index: var(--z-modal);
+  padding: 16px;
 }
 
 .delete-modal {
-  width: min(420px, calc(100% - 24px));
+  width: min(420px, 100%);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-large);
@@ -290,6 +289,7 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .modal-buttons button {

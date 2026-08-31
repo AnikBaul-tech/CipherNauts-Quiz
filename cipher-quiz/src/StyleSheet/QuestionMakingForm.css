@@ -1,13 +1,12 @@
 .question-making-page {
   min-height: 100vh;
   background: linear-gradient(180deg, var(--background) 0%, var(--surface-light) 100%);
-  
 }
 
 .quiz-form-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 32px var(--page-padding) 56px;
+  padding: 28px clamp(16px, 3vw, 32px) 56px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,8 +17,8 @@
   max-width: 760px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 32px;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 32px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-large);
@@ -30,7 +29,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-eyebrow {
@@ -49,7 +48,7 @@
 .quiz-form h2 {
   color: var(--text-primary);
   margin: 0;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: clamp(1.4rem, 2vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -57,7 +56,7 @@
 .form-description {
   color: var(--text-secondary);
   line-height: 1.7;
-  font-size: 0.96rem;
+  font-size: 0.95rem;
 }
 
 .form-grid {
@@ -124,10 +123,10 @@
 
 @media (max-width: 720px) {
   .quiz-form-container {
-    padding: 24px 16px 40px;
+    padding: 20px 16px 40px;
   }
 
   .quiz-form {
-    padding: 24px;
+    padding: 20px;
   }
 }

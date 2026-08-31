@@ -1,210 +1,127 @@
 .modal-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.65);
-
-    backdrop-filter:blur(6px);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:999;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 16px;
 }
 
 .preview-modal{
-
-    width:600px;
-
-    max-width:90%;
-
-    background:#121212;
-
-    border:1px solid #2d2d2d;
-
-    border-radius:18px;
-
-    box-shadow:0 20px 60px rgba(0,0,0,.6);
-
-    overflow:hidden;
-
-    animation:popup .25s ease;
+    width: min(640px, 100%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-large);
+    overflow: hidden;
+    animation: popup 0.25s ease;
 }
 
-/* header */
-
 .modal-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:22px 28px;
-
-    border-bottom:1px solid #2d2d2d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
 }
 
 .modal-header h2{
-
-    color:white;
-
-    margin:0;
-
-    font-size:24px;
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
 }
 
 .close-btn{
-
-    background:none;
-
-    border:none;
-
-    color:#888;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-    transition:.2s;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 .close-btn:hover{
-
-    color:#fff;
+    color: var(--text-primary);
 }
 
-/* body */
-
 .modal-body{
-
-    padding:28px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .preview-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-
-    gap:20px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid #232323;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
 }
 
 .preview-row span{
-
-    color:#60a5fa;
-
-    font-weight:600;
-
-    min-width:150px;
+    color: var(--primary);
+    font-weight: 600;
+    min-width: 120px;
 }
 
 .preview-row p{
-
-    margin:0;
-
-    color:#ddd;
-
-    text-align:right;
-
-    flex:1;
-
-    word-break:break-word;
+    margin: 0;
+    color: var(--text-secondary);
+    text-align: right;
+    flex: 1;
+    word-break: break-word;
 }
 
-/* footer */
-
 .modal-footer{
-
-    padding:20px 28px;
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    gap:15px;
-
-    border-top:1px solid #2d2d2d;
+    padding: 16px 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
 }
 
 .cancel-btn{
-
-    background:#222;
-
-    color:white;
-
-    border:1px solid #3a3a3a;
-
-    border-radius:8px;
-
-    padding:12px 22px;
-
-    cursor:pointer;
-
-    transition:.2s;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 .cancel-btn:hover{
-
-    background:#303030;
+    background: var(--surface-hover);
 }
 
 .confirm-btn{
-
-    background:#2563eb;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:12px 22px;
-
-    cursor:pointer;
-
-    transition:.2s;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 .confirm-btn:hover{
-
-    background:#1d4ed8;
+    background: var(--primary-hover);
 }
 
-/* animation */
-
 @keyframes popup{
-
-    from{
-
-        opacity:0;
-
-        transform:scale(.9);
+    from {
+        opacity: 0;
+        transform: scale(0.95);
     }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1);
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
-
 }

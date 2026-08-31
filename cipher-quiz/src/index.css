@@ -97,6 +97,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -105,10 +106,18 @@ body {
   color: var(--text-primary);
   transition: background 0.25s ease, color 0.25s ease;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 button {
@@ -131,9 +140,11 @@ select {
 
 input:focus,
 textarea:focus,
-select:focus {
+select:focus,
+button:focus-visible {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
 }
 
 ::selection {

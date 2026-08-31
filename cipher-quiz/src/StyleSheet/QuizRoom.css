@@ -1,110 +1,78 @@
 .quiz-room-page {
   max-width: 1400px;
-
   margin: 0 auto;
-
-  padding: 36px var(--page-padding) 60px;
+  padding: 28px clamp(16px, 3vw, 32px) 56px;
 }
 
-/* ---------- Page Header ---------- */
-
 .quiz-room-header {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .quiz-room-header h1 {
-  font-size: 2rem;
-
+  font-size: clamp(1.5rem, 2.1vw, 2rem);
   color: var(--text-primary);
-
   margin-bottom: 8px;
 }
 
 .quiz-room-header p {
   color: var(--text-secondary);
-
-  font-size: 1rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
 }
-
-/* ---------- Tabs ---------- */
 
 .quiz-room-nav {
   width: fit-content;
-
   display: flex;
-
-  gap: 10px;
-
-  margin: 0 auto 28px;
-
+  gap: 8px;
+  margin: 0 auto 24px;
   padding: 8px;
-
   background: var(--surface);
-
   border: 1px solid var(--border);
-
   border-radius: 999px;
-
   box-shadow: var(--shadow-small);
+  flex-wrap: wrap;
 }
 
 .quiz-room-nav button {
-  padding: 12px 22px;
-
+  padding: 10px 16px;
   background: transparent;
-
   color: var(--text-secondary);
-
   border-radius: 999px;
-
   font-weight: 600;
-
   transition: var(--transition);
 }
 
 .quiz-room-nav button:hover {
   background: var(--surface-hover);
-
   color: var(--primary);
 }
 
 .quiz-room-nav button.active {
   background: var(--primary);
-
   color: white;
 }
-
-/* ---------- Main Content ---------- */
 
 .quiz-room-content {
   margin-top: 10px;
 }
 
-/* ---------- Participant Card ---------- */
-
 .participant-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 18px 22px;
-
+  gap: 12px;
+  padding: 16px 18px;
   background: var(--surface-light);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius-medium);
-
-  margin-bottom: 16px;
-
+  margin-bottom: 14px;
   transition: var(--transition);
+  flex-wrap: wrap;
 }
 
 .participant-card:hover {
   background: var(--surface-hover);
-
   border-color: var(--primary);
-
   transform: translateY(-2px);
 }
 
@@ -114,31 +82,23 @@
 
 .participant-card h3 {
   color: var(--text-primary);
-
   margin-bottom: 5px;
 }
 
 .participant-card p {
   color: var(--text-secondary);
-
   font-size: 0.95rem;
 }
 
-/* ---------- Buttons inside participant ---------- */
-
 .participant-card button {
-  margin-left: 10px;
-
-  padding: 9px 18px;
-
+  margin-left: 8px;
+  padding: 8px 14px;
   border-radius: var(--radius-small);
-
   font-weight: 600;
 }
 
 .participant-card button:first-of-type {
   background: var(--success);
-
   color: white;
 }
 
@@ -148,7 +108,6 @@
 
 .participant-card button:last-of-type {
   background: var(--danger);
-
   color: white;
 }
 
@@ -156,18 +115,14 @@
   filter: brightness(1.05);
 }
 
-/* ---------- Settings ---------- */
-
 .setting-row {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
-  padding: 18px 0;
-
+  gap: 12px;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 .setting-row:last-child {
@@ -176,25 +131,19 @@
 
 .setting-row h3 {
   color: var(--text-primary);
-
   font-size: 1rem;
 }
 
 .setting-row p {
   color: var(--text-secondary);
-
   margin-top: 4px;
 }
 
 .setting-row button {
   background: var(--primary);
-
   color: white;
-
-  padding: 10px 20px;
-
+  padding: 10px 16px;
   border-radius: var(--radius-small);
-
   font-weight: 600;
 }
 
@@ -202,14 +151,9 @@
   background: var(--primary-hover);
 }
 
-/* ---------- Responsive ---------- */
-
 @media (max-width: 900px) {
   .quiz-room-nav {
     width: 100%;
-
-    flex-wrap: wrap;
-
     justify-content: center;
   }
 
@@ -219,17 +163,11 @@
 
   .participant-card {
     flex-direction: column;
-
     align-items: flex-start;
-
-    gap: 15px;
   }
 
   .setting-row {
     flex-direction: column;
-
     align-items: flex-start;
-
-    gap: 15px;
   }
 }

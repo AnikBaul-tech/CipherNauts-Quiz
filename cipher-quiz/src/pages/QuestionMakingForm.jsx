@@ -117,6 +117,7 @@ const QuestionMakingForm = () => {
                 setQuizData({ ...quizData, description: e.target.value })
               }
             ></textarea>
+            Start Time:-
             <input
               type="datetime-local"
               placeholder="Starting Time"
@@ -124,6 +125,7 @@ const QuestionMakingForm = () => {
                 setQuizData({ ...quizData, startTime: e.target.value })
               }
             />
+            End Time:-
             <input
               type="datetime-local"
               placeholder="Ending Time"

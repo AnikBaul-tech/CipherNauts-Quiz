@@ -1,25 +1,27 @@
 .settings-page {
     max-width: 900px;
-    margin: 30px auto;
-    padding: 35px;
-    background: #171717;
-    border: 1px solid #2b2b2b;
-    border-radius: 18px;
+    margin: 24px auto 40px;
+    padding: clamp(20px, 3vw, 32px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-small);
 }
 
 .settings-page h2 {
-    color: white;
-    margin-bottom: 30px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
 }
 
 .setting-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 16px 0;
-
-    border-bottom: 1px solid #2d2d2d;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
 }
 
 .setting-row:last-child {
@@ -27,39 +29,32 @@
 }
 
 .setting-row span:first-child {
-    color: #b8b8b8;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 .setting-row span:last-child {
-    color: white;
+    color: var(--text-primary);
     text-align: right;
     max-width: 60%;
     word-break: break-word;
 }
 
 .settings-page button {
-    margin-top: 30px;
-
+    margin-top: 24px;
     width: 100%;
-
     padding: 14px;
-
     border: none;
-    border-radius: 10px;
-
-    background: #2563eb;
+    border-radius: 999px;
+    background: var(--primary);
     color: white;
-
     font-size: 1rem;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition: .25s;
+    transition: var(--transition);
 }
 
 .settings-page button:hover {
-    background: #1d4ed8;
+    background: var(--primary-hover);
     transform: translateY(-2px);
 }

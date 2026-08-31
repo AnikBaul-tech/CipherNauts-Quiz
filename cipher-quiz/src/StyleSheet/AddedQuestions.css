@@ -22,10 +22,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 12px;
   font-size: 0.95rem;
+  flex-wrap: wrap;
 }
 
 .preview-question {
@@ -33,6 +35,7 @@
   font-size: 1rem;
   margin-bottom: 14px;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 .preview-options {
@@ -47,6 +50,7 @@
   border-radius: var(--radius-small);
   border: 1px solid var(--border);
   color: var(--text-secondary);
+  word-break: break-word;
 }
 
 .correct-option {
@@ -61,6 +65,7 @@
   border-radius: var(--radius-small);
   background: var(--surface-light);
   color: var(--text-secondary);
+  word-break: break-word;
 }
 
 .subjective-answer strong {

@@ -1,170 +1,84 @@
 .reflector {
   background: var(--surface);
-
   border: 1px solid var(--border);
-
   border-radius: var(--radius-large);
-
-  padding: 24px;
-
+  padding: 20px;
   box-shadow: var(--shadow-small);
-
   transition: var(--transition);
 }
-
-/* ===========================
-          Timer
-=========================== */
 
 .time {
   text-align: center;
-
-  margin-bottom: 24px;
-
-  padding-bottom: 18px;
-
+  margin-bottom: 18px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
-
   font-family: "JetBrains Mono", monospace;
-
-  font-size: 1.8rem;
-
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
   font-weight: 700;
-
   color: var(--primary);
-
-  letter-spacing: 2px;
+  letter-spacing: 0.12em;
 }
-
-/* ===========================
-       Question Grid
-=========================== */
 
 .options {
   display: grid;
-
-  grid-template-columns: repeat(5, 1fr);
-
-  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
 }
-
-/* ===========================
-      Question Box
-=========================== */
 
 .q-box {
-  width: 46px;
-
-  height: 46px;
-
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 12px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   background: var(--surface-light);
-
   border: 1px solid var(--border);
-
   color: var(--text-secondary);
-
   font-weight: 600;
-
   cursor: default;
-
   transition: var(--transition);
-
   user-select: none;
+  min-height: 42px;
 }
-
-/* ===========================
-    Attempted Question
-=========================== */
 
 .q-box.attempted {
   background: var(--success);
-
   border-color: var(--success);
-
   color: white;
-
   box-shadow: var(--shadow-small);
 }
-
-/* ===========================
-  Not Attempted Question
-=========================== */
 
 .q-box.not-attempted {
   background: var(--surface-light);
-
   border-color: var(--border);
-
   color: var(--text-secondary);
 }
 
-/* ===========================
-          Hover
-=========================== */
-
 .q-box:hover {
   transform: translateY(-2px);
-
   box-shadow: var(--shadow-small);
 }
 
-/* ===========================
-      Responsive
-=========================== */
-
-@media (max-width: 900px) {
-  .options {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .options {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .q-box {
-    width: 42px;
-
-    height: 42px;
-  }
-}
-
 .reflector-legend {
-  margin-top: 22px;
-
+  margin-top: 18px;
   display: flex;
-
   justify-content: center;
-
-  gap: 22px;
-
+  gap: 16px;
+  flex-wrap: wrap;
   font-size: 0.9rem;
-
   color: var(--text-secondary);
 }
 
 .legend-item {
   display: flex;
-
   align-items: center;
-
   gap: 8px;
 }
 
 .legend {
   width: 14px;
-
   height: 14px;
-
   border-radius: 50%;
 }
 
@@ -174,6 +88,29 @@
 
 .legend.pending {
   background: var(--surface-light);
-
   border: 1px solid var(--border);
+}
+
+@media (max-width: 480px) {
+  .options {
+    display: flex;
+    grid-template-columns: unset;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .q-box {
+    flex: 0 0 42px;
+    scroll-snap-align: start;
+  }
+}
+
+.options::-webkit-scrollbar {
+  height: 4px;
+}
+.options::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
 }
