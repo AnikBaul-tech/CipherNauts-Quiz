@@ -9,7 +9,7 @@ const QuizForm = ({
   answers,
   setAnswers,
   disabled,
-  submitted
+  submitted,
 }) => {
   const handleAnswer = (index, questionId, answer) => {
     setAnswers((prev) => {
@@ -35,7 +35,7 @@ const QuizForm = ({
  
 
   const handleSubmit = () => {
-    onSubmit();
+    onSubmit?.();
   };
 
   return (

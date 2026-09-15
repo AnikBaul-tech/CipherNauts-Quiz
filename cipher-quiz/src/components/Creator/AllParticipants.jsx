@@ -57,7 +57,8 @@ const AllParticipants = ({quizId}) => {
       {requested.map((user) => (
         <div className="participant-card" key={user.id}>
           <div>
-            <h3>{user.requesterName}</h3>
+          {"This is a user"+console.log(user)}
+          <Link to={`/profile/${user.requesterId}`}><h3>{user.requesterName}</h3></Link>
           </div>
 
           <div>
@@ -76,7 +77,7 @@ const AllParticipants = ({quizId}) => {
 
       {accepted.map((user) => (
         <div className="participant-card" key={user.id}>
-          <Link to={`/profile/${user.id}`}><h3>{user.requesterName}</h3></Link>
+          <Link to={`/profile/${user.requesterId}`}><h3>{user.requesterName}</h3></Link>
 
           <span className="status-accepted">Accepted</span>
         </div>
@@ -86,7 +87,7 @@ const AllParticipants = ({quizId}) => {
 
       {rejected.map((user) => (
         <div className="participant-card" key={user.id}>
-          <h3>{user.requesterName}</h3>
+         <Link to={`/profile/${user.requesterUid}`}><h3>{user.requesterName}</h3></Link>
 
           <span className="status-rejected">Rejected</span>
         </div>

@@ -151,3 +151,12 @@ button:focus-visible {
   background: var(--primary-light);
   color: var(--primary-hover);
 }
+
+a{
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+a:hover{
+  color: var(--primary);
+}

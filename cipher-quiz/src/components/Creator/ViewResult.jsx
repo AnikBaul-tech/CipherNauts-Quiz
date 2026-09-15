@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../StyleSheet/ViewResult.css";
-
+import {Link} from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -81,7 +81,7 @@ const ViewResult = ({ quizId }) => {
               <div className="table-row" key={participant.id}>
                 <span>#{index + 1}</span>
 
-                <span>{participant.userId}</span>
+                <Link to={`/profile/${participant.userId}`}><span>{participant.userName}</span></Link>
 
                 <span>
                   {participant.score} / {participant.totalMarks}

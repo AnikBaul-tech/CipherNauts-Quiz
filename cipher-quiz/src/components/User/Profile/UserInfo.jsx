@@ -2,7 +2,7 @@ const UserInfo = ({ profile, stats }) => {
   return (
     <div className="left-panel">
       <div className="top-user">
-        <img src={profile.photoURL || "../src/assets/default-avatar.avif"}  className="profile-image" />
+        <img src={profile.photoURL || "../src/assets/default-avatar.avif"} alt="profile-pic"  className="profile-image" />
 
         <div>
           <h2>{profile.name}</h2>

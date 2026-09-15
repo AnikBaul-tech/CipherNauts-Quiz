@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import "../StyleSheet/Profile.css";
 
-import { useAuth } from "../context/AuthProvider";
 import {
   collection,
   doc,
@@ -19,71 +20,60 @@ import Achievements from "../components/User/Profile/Achievments.jsx";
 import Header from "../components/User/Header.jsx";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { userId } = useParams();
 
   const [profile, setProfile] = useState(null);
 
   const [stats, setStats] = useState({
     created: 0,
-
     participated: 0,
-
     registered: 0,
-
     nextQuiz: null,
-
     highest: 0,
-
     gold: 0,
-
     silver: 0,
-
     bronze: 0,
   });
 
   useEffect(() => {
-    if (!user) return;
+    if (!userId) return;
 
     loadProfile();
-  }, [user]);
+  }, [userId]);
 
   const loadProfile = async () => {
-    // user details
+    // User details
+    const userSnap = await getDoc(doc(db, "users", userId));
 
-    const userSnap = await getDoc(doc(db, "users", user.uid));
+    if (!userSnap.exists()) {
+      setProfile(null);
+      return;
+    }
 
     setProfile(userSnap.data());
 
-    // quizzes created
-
+    // Quizzes created
     const createdSnap = await getDocs(
       query(
         collection(db, "quizzes"),
-
-        where("authorId", "==", user.uid)
+        where("authorId", "==", userId)
       )
     );
 
     const created = createdSnap.size;
 
-    // request quiz
-
+    // Request quiz
     const requestSnap = await getDocs(
       collection(
         db,
-
         "users",
-
-        user.uid,
-
+        userId,
         "requestQuiz"
       )
     );
 
     let participated = 0;
-
     let registered = 0;
-
     let nextQuiz = null;
 
     requestSnap.forEach((doc) => {
@@ -102,22 +92,17 @@ const Profile = () => {
       }
     });
 
-    // attempts
-
+    // Attempts
     const attemptSnap = await getDocs(
       query(
         collection(db, "attempts"),
-
-        where("userId", "==", user.uid)
+        where("userId", "==", userId)
       )
     );
 
     let highest = 0;
-
     let gold = 0;
-
     let silver = 0;
-
     let bronze = 0;
 
     attemptSnap.forEach((doc) => {
@@ -125,28 +110,23 @@ const Profile = () => {
 
       highest = Math.max(highest, p);
 
-      if (p >= 95) gold++;
-
-      else if (p >= 90) silver++;
-
-      else if (p >= 85) bronze++;
+      if (p >= 95) {
+        gold++;
+      } else if (p >= 90) {
+        silver++;
+      } else if (p >= 85) {
+        bronze++;
+      }
     });
 
     setStats({
       created,
-
       participated,
-
       registered,
-
       nextQuiz,
-
       highest,
-
       gold,
-
       silver,
-
       bronze,
     });
   };
@@ -156,11 +136,10 @@ const Profile = () => {
   return (
     <>
       <Header />
+
       <div className="profile-page">
         <UserInfo profile={profile} stats={stats} />
-
         <Statistics highest={stats.highest} />
-
         <Achievements stats={stats} />
       </div>
     </>

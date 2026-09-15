@@ -29,11 +29,24 @@
   font-size: 0.98rem;
 }
 
+
+/* ================================
+   MAIN QUIZ LAYOUT
+================================ */
+
 .quiz-container {
   display: grid;
-  grid-template-columns: minmax(0, 2.8fr) minmax(280px, 1fr);
+
+  grid-template-columns:
+    minmax(0, 2.8fr)
+    minmax(280px, 1fr);
+
   gap: 24px;
+
   align-items: start;
+
+  /* Important for sticky */
+  overflow: visible;
 }
 
 .quiz-left {
@@ -43,13 +56,38 @@
   min-width: 0;
 }
 
+
+/* ================================
+   STICKY RIGHT PANEL
+================================ */
+
 .quiz-right {
+  position: -webkit-sticky;
   position: sticky;
+
+  /* Distance from top of viewport */
   top: 90px;
+
+  /* Prevent grid stretching */
+  align-self: start;
+
+  /* Important */
+  height: max-content;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  z-index: 20;
+
+  /* Never create a scrolling container */
+  overflow: visible;
 }
+
+
+/* ================================
+   TIMER / REFLECTOR CARDS
+================================ */
 
 .timer-card,
 .reflector-card {
@@ -62,6 +100,7 @@
 
 .timer-card {
   padding: 24px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,28 +110,87 @@
   padding: 20px;
 }
 
+
+/* ================================
+   MEDIUM SCREEN
+================================ */
+
 @media (max-width: 1100px) {
   .quiz-container {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 2.2fr)
+      minmax(240px, 1fr);
+
+    gap: 18px;
+
+    overflow: visible;
   }
 
   .quiz-right {
-    position: static;
-    flex-direction: column;   /* was: row */
-    align-items: stretch;     /* was: flex-start */
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 80px;
+
+    align-self: start;
+    height: max-content;
+
+    flex-direction: column;
+
+    overflow: visible;
+  }
+
+  .timer-card,
+  .reflector-card {
+    width: 100%;
+  }
+}
+
+
+/* ================================
+   SMALLER SCREEN
+================================ */
+
+@media (max-width: 850px) {
+  .quiz-container {
+    grid-template-columns:
+      minmax(0, 1.8fr)
+      minmax(210px, 0.8fr);
+
+    gap: 14px;
+
+    overflow: visible;
+  }
+
+  .quiz-right {
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 70px;
+
+    align-self: start;
+    height: max-content;
+
+    overflow: visible;
+
     gap: 14px;
   }
 
   .timer-card {
-    flex: none;               /* was: flex: 1 */
+    padding: 18px;
   }
 
   .reflector-card {
-    flex: none;               /* was: flex: 2 */
+    padding: 16px;
   }
 }
 
-@media (max-width: 700px) {
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
   .quiz-page {
     padding: 20px 0 36px;
   }
@@ -103,8 +201,34 @@
     gap: 8px;
   }
 
-  .quiz-right {
+  /*
+     On mobile, put the panel above the questions.
+     It remains sticky while the quiz is scrolled.
+  */
+  .quiz-container {
+    display: flex;
     flex-direction: column;
+
+    overflow: visible;
+  }
+
+  .quiz-right {
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 10px;
+
+    width: 100%;
+
+    order: -1;
+
+    align-self: stretch;
+
+    height: max-content;
+
+    z-index: 20;
+
+    overflow: visible;
   }
 
   .timer-card,

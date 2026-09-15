@@ -229,6 +229,8 @@ const Quiz = () => {
 
           userId: user.uid,
 
+          userName: user.displayName,
+
           submittedAt: serverTimestamp(),
 
           score,
