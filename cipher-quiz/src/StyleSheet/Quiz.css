@@ -62,11 +62,12 @@
 ================================ */
 
 .quiz-right {
-  position: -webkit-sticky;
-  position: sticky;
+  
+  position: fixed;
 
   /* Distance from top of viewport */
-  top: 90px;
+  bottom: 20px;
+  right: 10px;
 
   /* Prevent grid stretching */
   align-self: start;
